@@ -40,7 +40,7 @@ const Home: NextPage = () => {
 
         <div className="flex flex-col min-h-full justify-between">
           <main className="flex gap-8 p-8">
-            <div className="border border-gray-300 bg-white flex-1 rounded-md self-start overflow-hidden">
+            <div className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start overflow-hidden">
               <div className="p-4 font-bold border-b bg-purple-100">Today</div>
               <div className="p-4 grid grid-cols-3 border-b bg-yellow-100 hover:bg-yellow-50">
                 <div className="w-24">7:30am</div>
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
               </div>
             </div>
 
-            <div className="border border-gray-300 bg-white flex-1 rounded-md self-start">
+            <div className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start">
               <h2 className="p-4 font-bold border-b text-2xl">Tone</h2>
               <div className="p-4 text-sm border-b">
                 <div className="flex gap-2 items-center">
