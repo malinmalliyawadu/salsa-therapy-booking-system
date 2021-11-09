@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import {
   BeakerIcon,
   CalendarIcon,
+  ExternalLinkIcon,
   LocationMarkerIcon,
   UserGroupIcon,
 } from "@heroicons/react/outline";
@@ -48,9 +49,9 @@ const Home: NextPage = () => {
         </header>
 
         <div className="flex flex-col min-h-full justify-between">
-          <main className="flex gap-8 p-8">
+          <main className="flex gap-8 px-8 py-10">
             <div className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start overflow-hidden">
-              <div className="p-4 font-bold border-b bg-purple-100 border-purple-500">
+              <div className="p-4 font-bold border-b bg-purple-200 border-purple-500 uppercase text-purple-900">
                 Today
               </div>
               <div className="p-4 grid grid-cols-3 border-b bg-yellow-100 hover:bg-yellow-50">
@@ -68,7 +69,7 @@ const Home: NextPage = () => {
                 <div className="text-right"></div>
               </div>
 
-              <div className="p-4 font-bold border-b bg-purple-100 border-purple-500">
+              <div className="p-4 font-bold border-b bg-purple-200 border-purple-500 uppercase text-purple-900">
                 Tomorrow
               </div>
               <div className="p-4 grid grid-cols-3 border-b">
@@ -86,7 +87,7 @@ const Home: NextPage = () => {
                 <div className="text-right"></div>
               </div>
 
-              <div className="p-4 font-bold border-b bg-purple-100 border-purple-500">
+              <div className="p-4 font-bold border-b bg-purple-200 border-purple-500 uppercase text-purple-900">
                 This week
               </div>
               <div className="p-4 grid grid-cols-3 border-b">
@@ -108,20 +109,28 @@ const Home: NextPage = () => {
 
             <div className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start">
               <h2 className="p-4 font-bold border-b text-2xl">Tone</h2>
-              <div className="p-4 text-sm border-b">
+              <div className="p-4 border-b">
                 <div className="flex gap-2 items-center">
                   <CalendarIcon className="h-4 w-4" />
                   Thursday, 11 November 2021 7:30am – 8:15am NZDT
                 </div>
                 <div className="flex gap-2 items-center">
                   <LocationMarkerIcon className="h-4 w-4" />
-                  More than Moves, 5B Courtenay Place, Te Aro, Wellington, 6011
+                  <a
+                    href="https://g.page/SalsaTherapy?share"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline hover:text-purple-500 flex items-center"
+                  >
+                    Full Swing, 80 Cuba Street, Te Aro, Wellington 6011
+                    <ExternalLinkIcon className="h-4 w-4 inline-block ml-1" />
+                  </a>
                 </div>
                 <div className="flex gap-2 items-center">
                   <UserGroupIcon className="h-4 w-4" />6 spaces available
                 </div>
               </div>
-              <div className="p-4 text-sm border-b">
+              <div className="p-4 border-b">
                 <h3 className="text-lg font-bold">Details</h3>
                 <p>
                   Fun and sweaty class, really focusing on technique and getting
@@ -129,18 +138,18 @@ const Home: NextPage = () => {
                   use most for dancing while grooving to upbeat music!
                 </p>
               </div>
-              <div className="p-4 text-sm border-b">
+              <div className="p-4 border-b">
                 <h3 className="text-lg font-bold">Instructions</h3>
                 <p>
                   Bring comfy workout clothes, good gym shoes. Bring a mat for
                   floor work but not mandatory.
                 </p>
               </div>
-              <div className="p-4 text-sm">
+              <div className="p-4">
                 <h3 className="text-lg font-bold">Tickets</h3>
                 <div className="flex justify-between items-end">
                   <div className="text-lg">$15.00</div>
-                  <button className="py-3 px-4 rounded-md bg-indigo-500 hover:bg-indigo-600 text-white">
+                  <button className="transition-all hover:shadow-lg py-3 px-4 rounded-md bg-indigo-500 hover:bg-indigo-600 text-white">
                     Book class
                   </button>
                 </div>
