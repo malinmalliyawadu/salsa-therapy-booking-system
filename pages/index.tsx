@@ -22,13 +22,22 @@ const Home: NextPage = () => {
 
       <div className="font-inter antialiased bg-gray-100 text-gray-600">
         <header className="shadow-sm sticky py-6 px-4 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
-          <h1 className="text-5xl font-bold text-purple-900">
+          <h1
+            className="text-5xl font-bold text-purple-900"
+            style={{
+              textShadow:
+                "rgba(0, 0, 0, 0.2) 0px 2px 2px, rgba(0, 0, 0, 0.1) 0px 3px 4px",
+            }}
+          >
             Salsa Therapy 💃
           </h1>
 
           <nav className="flex gap-6">
             <div>
-              <a href="/schedule" className="border-b-4 pb-1">
+              <a
+                href="/schedule"
+                className="border-b-4 pb-1 text-purple-500 border-purple-500"
+              >
                 Upcoming Classes
               </a>
             </div>
@@ -41,7 +50,9 @@ const Home: NextPage = () => {
         <div className="flex flex-col min-h-full justify-between">
           <main className="flex gap-8 p-8">
             <div className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start overflow-hidden">
-              <div className="p-4 font-bold border-b bg-purple-100">Today</div>
+              <div className="p-4 font-bold border-b bg-purple-100 border-purple-500">
+                Today
+              </div>
               <div className="p-4 grid grid-cols-3 border-b bg-yellow-100 hover:bg-yellow-50">
                 <div className="w-24">7:30am</div>
                 <div>Tone</div>
@@ -57,7 +68,7 @@ const Home: NextPage = () => {
                 <div className="text-right"></div>
               </div>
 
-              <div className="p-4 font-bold border-b bg-purple-100">
+              <div className="p-4 font-bold border-b bg-purple-100 border-purple-500">
                 Tomorrow
               </div>
               <div className="p-4 grid grid-cols-3 border-b">
@@ -75,7 +86,7 @@ const Home: NextPage = () => {
                 <div className="text-right"></div>
               </div>
 
-              <div className="p-4 font-bold border-b bg-purple-100">
+              <div className="p-4 font-bold border-b bg-purple-100 border-purple-500">
                 This week
               </div>
               <div className="p-4 grid grid-cols-3 border-b">
