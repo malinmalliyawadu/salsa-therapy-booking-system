@@ -1,6 +1,5 @@
 import { DotsHorizontalIcon, RefreshIcon } from "@heroicons/react/outline";
 import React from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useBookings } from "../hooks/useBookings";
 import { useClasses } from "../hooks/useClasses";
 import { DanceClass } from "../types/DanceClass";

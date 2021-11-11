@@ -24,13 +24,15 @@ const Home: NextPage = () => {
       <main className="flex gap-8 px-8 py-10">
         <ClassTimetable onRowClick={(row) => setSelectedClass(row)} />
 
-        <AnimatePresence>
-          {selectedClass ? (
-            <ClassDescription danceClass={selectedClass} />
-          ) : (
-            <ClassDescriptionHelp />
-          )}
-        </AnimatePresence>
+        <div className="hidden md:flex flex-1">
+          <AnimatePresence>
+            {selectedClass ? (
+              <ClassDescription danceClass={selectedClass} />
+            ) : (
+              <ClassDescriptionHelp />
+            )}
+          </AnimatePresence>
+        </div>
       </main>
     </div>
   );
