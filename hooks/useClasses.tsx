@@ -3,14 +3,6 @@ import { useEffect, useState } from "react";
 import { useList } from "react-firebase-hooks/database";
 import { DanceClass } from "../types/DanceClass";
 
-const options = {
-  transform: (val: any) => ({
-    ...val,
-    startDate: new Date(val.startDate),
-    endDate: new Date(val.endDate),
-  }),
-};
-
 export const useClasses = (): [
   DanceClass[] | undefined,
   boolean,

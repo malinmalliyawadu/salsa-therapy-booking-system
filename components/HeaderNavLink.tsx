@@ -9,8 +9,7 @@ export const HeaderNavLink: React.FC<HeaderNavLinkProps> = ({
   href,
 }) => {
   const router = useRouter();
-  const isSelected = router.pathname.startsWith(href);
-  console.log(router.pathname);
+  const isSelected = router.pathname === href;
 
   return (
     <a

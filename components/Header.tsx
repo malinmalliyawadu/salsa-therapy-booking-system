@@ -17,7 +17,9 @@ export const Header = () => {
 
   return (
     <header className="shadow-sm sticky py-6 px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
-      <Image src="/logo.png" width="75" height="45" />
+      <a href="/">
+        <Image src="/logo.png" width="75" height="45" />
+      </a>
 
       <nav className="flex gap-6 items-center">
         <HeaderNavLink href="/">Upcoming Classes</HeaderNavLink>

@@ -21,10 +21,12 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
       initial={{ opacity: 0, scale: 0.2 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.2 }}
-      className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start"
+      className="shadow-xl overflow-hidden border border-gray-300 bg-white flex-1 rounded-md self-start"
     >
-      <h2 className="p-4 font-bold border-b text-2xl">{danceClass.name}</h2>
-      <div className="p-4 border-b">
+      <h2 className="p-4 font-bold bg-gradient-to-r from-purple-600 to-purple-500 text-white border-b text-2xl">
+        {danceClass.name}
+      </h2>
+      <div className="p-4 bg-gray-50">
         <div className="flex gap-2 items-center">
           <CalendarIcon className="h-4 w-4" />
           {new Date().toLocaleDateString("en-NZ")} {danceClass.classStartTime} -{" "}
@@ -46,7 +48,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
           <UserGroupIcon className="h-4 w-4" />6 spaces available
         </div>
       </div>
-      <div className="p-4 border-b">
+      <div className="p-4 ">
         <h3 className="text-lg font-bold">Details</h3>
         <p>
           Fun and sweaty class, really focusing on technique and getting the
@@ -54,7 +56,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
           dancing while grooving to upbeat music!
         </p>
       </div>
-      <div className="p-4 border-b">
+      <div className="p-4 bg-gray-50">
         <h3 className="text-lg font-bold">Instructions</h3>
         <p>
           Bring comfy workout clothes, good gym shoes. Bring a mat for floor

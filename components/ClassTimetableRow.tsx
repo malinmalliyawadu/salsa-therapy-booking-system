@@ -1,14 +1,15 @@
+import { Booking } from "../types/Booking";
 import { DanceClass } from "../types/DanceClass";
 
 interface ClassTimetableRowProps {
   danceClass: DanceClass;
-  bookedStatus?: "Booked" | "Waitlisted";
+  booked?: boolean;
   onClick: (danceClass: DanceClass) => void;
 }
 
 export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
   danceClass,
-  bookedStatus,
+  booked,
   onClick,
 }) => {
   return (
@@ -19,7 +20,7 @@ export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
       <div className="w-24">{danceClass.classStartTime}</div>
       <div>{danceClass.name}</div>
       <div className="text-right">
-        {bookedStatus === "Booked" && (
+        {booked && (
           <div className="inline-block text-xs font-semibold text-white py-1 px-2 bg-green-500 rounded-full">
             Booked
           </div>
