@@ -3,7 +3,6 @@ import "firebase/firestore";
 import { FacebookAuthProvider, getAuth } from "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { NextPage } from "next";
-import Image from "next/image";
 
 const Login: NextPage = () => {
   // Configure FirebaseUI.

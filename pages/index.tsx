@@ -1,12 +1,7 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import React, { useState } from "react";
-import { Footer } from "../components/Footer";
-import { Button } from "../components/Button";
 import { getAuth } from "@firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Header } from "../components/Header";
 import { ClassTimetable } from "../components/ClassTimetable";
 import { ClassDescription } from "../components/ClassDescription";
 import { useClasses } from "../hooks/useClasses";
