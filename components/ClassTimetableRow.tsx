@@ -3,14 +3,19 @@ import { DanceClass } from "../types/DanceClass";
 interface ClassTimetableRowProps {
   danceClass: DanceClass;
   bookedStatus?: "Booked" | "Waitlisted";
+  onClick: (danceClass: DanceClass) => void;
 }
 
 export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
   danceClass,
   bookedStatus,
+  onClick,
 }) => {
   return (
-    <div className="p-4 grid grid-cols-3 border-b hover:bg-yellow-50 cursor-pointer">
+    <div
+      onClick={() => onClick(danceClass)}
+      className="p-4 grid grid-cols-3 border-b hover:bg-yellow-50 cursor-pointer"
+    >
       <div className="w-24">{danceClass.classStartTime}</div>
       <div>{danceClass.name}</div>
       <div className="text-right">

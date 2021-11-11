@@ -2,8 +2,10 @@ import React from "react";
 import "firebase/firestore";
 import { FacebookAuthProvider, getAuth } from "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { NextPage } from "next";
+import Image from "next/image";
 
-function SignInScreen() {
+const Login: NextPage = () => {
   // Configure FirebaseUI.
   const uiConfig = {
     signInFlow: "popup",
@@ -15,12 +17,13 @@ function SignInScreen() {
   };
 
   return (
-    <div>
-      <h1>Pineapple Login</h1>
-      <p>Please sign-in:</p>
+    <div className="m-32 p-10 flex justify-center flex-col bg-white border">
+      <h1 className="text-center text-4xl font-bold mb-6">
+        Login to book a class
+      </h1>
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={getAuth()} />
     </div>
   );
-}
+};
 
-export default SignInScreen;
+export default Login;

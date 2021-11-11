@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { Layout } from "../components/Layout";
 
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -20,7 +21,11 @@ if (!firebase.getApps().length) {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
 export default MyApp;
