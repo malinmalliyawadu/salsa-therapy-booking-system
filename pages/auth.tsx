@@ -1,16 +1,7 @@
-import * as firebase from "firebase/app";
 import React from "react";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import {
-  FacebookAuthProvider,
-  getAuth,
-  onAuthStateChanged,
-} from "firebase/auth";
 import "firebase/firestore";
-const {
-  initializeAppCheck,
-  ReCaptchaV3Provider,
-} = require("firebase/app-check");
+import { FacebookAuthProvider, getAuth } from "firebase/auth";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 function SignInScreen() {
   // Configure FirebaseUI.
