@@ -11,8 +11,14 @@ import {
   LocationMarkerIcon,
   UserGroupIcon,
 } from "@heroicons/react/outline";
+import { Button } from "../components/Button";
+import { getAuth } from "@firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Header } from "../components/Header";
+import { ClassTimetable } from "../components/ClassTimetable";
 
 const Home: NextPage = () => {
+  const [user, loading, error] = useAuthState(getAuth());
   return (
     <div className="">
       <Head>
@@ -22,90 +28,11 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="font-inter antialiased bg-gray-100 text-gray-600">
-        <header className="shadow-sm sticky py-6 px-4 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
-          <h1
-            className="text-5xl font-bold text-purple-900"
-            style={{
-              textShadow:
-                "rgba(0, 0, 0, 0.2) 0px 2px 2px, rgba(0, 0, 0, 0.1) 0px 3px 4px",
-            }}
-          >
-            Salsa Therapy 💃
-          </h1>
-
-          <nav className="flex gap-6">
-            <div>
-              <a
-                href="/schedule"
-                className="border-b-4 pb-1 text-purple-500 border-purple-500"
-              >
-                Upcoming Classes
-              </a>
-            </div>
-            <div>
-              <a href="/pricing">Pricing</a>
-            </div>
-          </nav>
-        </header>
+        <Header />
 
         <div className="flex flex-col min-h-full justify-between">
           <main className="flex gap-8 px-8 py-10">
-            <div className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start overflow-hidden">
-              <div className="p-4 font-bold border-b bg-purple-200 border-purple-500 uppercase text-purple-900">
-                Today
-              </div>
-              <div className="p-4 grid grid-cols-3 border-b bg-yellow-100 hover:bg-yellow-50">
-                <div className="w-24">7:30am</div>
-                <div>Tone</div>
-                <div className="text-right">
-                  <div className="inline-block text-xs font-semibold text-white py-1 px-2 bg-green-500 rounded-full">
-                    Booked
-                  </div>
-                </div>
-              </div>
-              <div className="p-4 grid grid-cols-3 border-b cursor-pointer hover:bg-yellow-50">
-                <div>7:30am</div>
-                <div>Tone</div>
-                <div className="text-right"></div>
-              </div>
-
-              <div className="p-4 font-bold border-b bg-purple-200 border-purple-500 uppercase text-purple-900">
-                Tomorrow
-              </div>
-              <div className="p-4 grid grid-cols-3 border-b">
-                <div className="w-24">7:30am</div>
-                <div>Tone</div>
-                <div className="text-right">
-                  <div className="inline-block text-xs font-semibold text-white py-1 px-2 bg-yellow-500 rounded-full">
-                    Waitlisted
-                  </div>
-                </div>
-              </div>
-              <div className="p-4 grid grid-cols-3 border-b">
-                <div>7:30am</div>
-                <div>Tone</div>
-                <div className="text-right"></div>
-              </div>
-
-              <div className="p-4 font-bold border-b bg-purple-200 border-purple-500 uppercase text-purple-900">
-                This week
-              </div>
-              <div className="p-4 grid grid-cols-3 border-b">
-                <div>7:30am</div>
-                <div>Tone</div>
-                <div className="text-right"></div>
-              </div>
-              <div className="p-4 grid grid-cols-3 border-b">
-                <div>7:30am</div>
-                <div>Tone</div>
-                <div className="text-right"></div>
-              </div>
-              <div className="p-4 grid grid-cols-3">
-                <div>7:30am</div>
-                <div>Tone</div>
-                <div className="text-right"></div>
-              </div>
-            </div>
+            <ClassTimetable />
 
             <div className="shadow-xl border border-gray-300 bg-white flex-1 rounded-md self-start">
               <h2 className="p-4 font-bold border-b text-2xl">Tone</h2>
@@ -149,9 +76,7 @@ const Home: NextPage = () => {
                 <h3 className="text-lg font-bold">Tickets</h3>
                 <div className="flex justify-between items-end">
                   <div className="text-lg">$15.00</div>
-                  <button className="transition-all hover:shadow-lg py-3 px-4 rounded-md bg-indigo-500 hover:bg-indigo-600 text-white">
-                    Book class
-                  </button>
+                  <Button>Book class</Button>
                 </div>
               </div>
             </div>
