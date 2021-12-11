@@ -17,12 +17,18 @@ const Home: NextPage = () => {
   return (
     <div className="flex flex-col min-h-full justify-between">
       <main className="flex gap-8 px-8 py-10">
-        <ClassTimetable onRowClick={(row) => setSelectedClass(row)} />
+        <ClassTimetable
+          onRowClick={(row) => setSelectedClass(row)}
+          selectedClass={selectedClass}
+        />
 
         <div className="hidden md:flex flex-1">
           <AnimatePresence>
             {selectedClass ? (
-              <ClassDescription danceClass={selectedClass} />
+              <ClassDescription
+                danceClass={selectedClass}
+                onClose={() => setSelectedClass(undefined)}
+              />
             ) : (
               <ClassDescriptionHelp />
             )}
