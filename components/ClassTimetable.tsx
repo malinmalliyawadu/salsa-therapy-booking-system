@@ -11,7 +11,7 @@ import { Loading } from "./Loading";
 
 interface ClassTimetableProps {
   onRowClick: (danceClass: DanceClass) => void;
-  selectedClass: DanceClass;
+  selectedClass?: DanceClass;
 }
 
 export const ClassTimetable: React.FC<ClassTimetableProps> = ({
