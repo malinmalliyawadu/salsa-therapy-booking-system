@@ -32,3 +32,5 @@ app.post("/create-checkout-session", async (req: any, res: any) => {
 app.listen(4242, () => console.log("Running on port 4242"));
 
 exports.app = functions.https.onRequest(app);
+
+export {};
