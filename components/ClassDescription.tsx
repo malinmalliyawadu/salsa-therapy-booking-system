@@ -70,21 +70,19 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
             </a>
           </div>
           <div className="flex gap-2 items-center">
-            <UserGroupIcon className="h-4 w-4" />6 spaces available
+            <UserGroupIcon className="h-4 w-4" />
+            {danceClass.maxPeople} spaces available
           </div>
         </div>
         <div className="p-4 ">
-          <h3 className="text-lg font-bold">Details</h3>
+          <h3 className="text-lg font-bold">Description</h3>
           <p>{danceClass.description}</p>
         </div>
+
         <div className="p-4 bg-gray-50">
-          <h3 className="text-lg font-bold">Instructions</h3>
-          <p>{danceClass.extraInfo}</p>
-        </div>
-        <div className="p-4">
-          <h3 className="text-lg font-bold">Tickets</h3>
+          <h3 className="text-lg font-bold">Price</h3>
           <div className="flex justify-between items-end">
-            <div className="text-lg">${danceClass.price}</div>
+            <div className="text-5xl">${danceClass.price}</div>
             {user ? (
               <Button onClick={onBookClassClick}>Book class</Button>
             ) : (

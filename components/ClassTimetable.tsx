@@ -1,4 +1,3 @@
-import { DotsHorizontalIcon, RefreshIcon } from "@heroicons/react/outline";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { useBookings } from "../hooks/useBookings";
@@ -23,9 +22,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
   const [selectedClassId, setSelectedClassId] = useState<string>();
 
   useEffect(() => {
-    if (selectedClass) {
-      setSelectedClassId(selectedClass.id);
-    }
+    setSelectedClassId(selectedClass?.id ?? undefined);
   }, [selectedClass]);
 
   const weekdays = [
@@ -51,6 +48,11 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     (x) =>
       dayjs(x.startDate) <= today.endOf("week") &&
       dayjs(x.endDate) >= today.startOf("week")
+  );
+  const thisMonthsClasses = classes?.filter(
+    (x) =>
+      dayjs(x.startDate) <= today.endOf("month") &&
+      dayjs(x.endDate) >= today.startOf("month")
   );
 
   if (loading) {
@@ -108,11 +110,22 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
             ))}
           </>
         )}
-      </div>
 
-      <Button appearance="secondary">
-        <RefreshIcon className="h-5 w-5 inline-block" /> Load more
-      </Button>
+        {(thisMonthsClasses?.length ?? 0) > 0 && (
+          <>
+            <ClassTimetableRowHeader>Later this month</ClassTimetableRowHeader>
+            {thisMonthsClasses?.map((x) => (
+              <ClassTimetableRow
+                key={x.id}
+                booked={bookings?.some((y) => y.classId == x.id)}
+                danceClass={x}
+                onClick={onRowClick}
+                selected={x.id === selectedClassId}
+              />
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };

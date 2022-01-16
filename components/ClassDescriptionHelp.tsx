@@ -16,6 +16,8 @@ export const ClassDescriptionHelp = () => {
         <span className="text-3xl">👈</span>
         <p>Click on one of our upcoming classes to get started</p>
       </div>
+
+      <div className="text-9xl my-12">💃🕺</div>
     </motion.div>
   );
 };
