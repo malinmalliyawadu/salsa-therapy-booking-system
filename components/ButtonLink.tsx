@@ -11,7 +11,7 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
   return appearance === "primary" ? (
     <a
       href={href}
-      className="transition-all transform hover:shadow-lg py-3 px-4 rounded-md hover:scale-105 bg-purple-500 hover:bg-purple-600 text-white"
+      className="shadow-lg shadow-indigo-500/50 transition-all transform hover:shadow-lg py-3 px-4 rounded-md hover:scale-105 bg-purple-500 hover:bg-purple-600 text-white"
     >
       {children}
     </a>
