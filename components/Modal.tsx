@@ -78,17 +78,17 @@ export const Modal: React.FC<Props> = ({ show, onClose, danceClass }) => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500 mb-6">
-                        Lorem ipsum dolor.
+                        Great choice!
                       </p>
 
-                      <fieldset>
+                      <fieldset className="mb-6">
                         <div>
                           <legend className="text-base font-medium text-gray-900">
                             Dancer type
                           </legend>
                           <p className="text-sm text-gray-500">
-                            To ensure we've got a balance please let us know
-                            what type of dancer you are.
+                            To ensure we've got a balance in the class please
+                            let us know what type of dancer you are.
                           </p>
                         </div>
                         <div className="mt-4 space-y-4">

@@ -10,7 +10,7 @@ const BookingSuccess: NextPage = () => {
   const router = useRouter();
   const [user, userLoading, userError] = useAuthState(getAuth());
   const [classes, classesLoading, classesError] = useClasses();
-  const danceClass = classes?.find((x) => x.id === router.query["classId"]);
+  const danceClass = classes?.find((x) => x.id === router.query["id"]);
 
   return (
     <div className="flex justify-center my-32 flex-row gap-8">

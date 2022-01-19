@@ -6,6 +6,10 @@ import { Button } from "../components/Button";
 import { ButtonLink } from "../components/ButtonLink";
 import { PriceCard } from "../components/PriceCard";
 import { StripeForm } from "../components/StripeForm";
+import {
+  SpecialOfferTenTrip,
+  TenTripStudentPass,
+} from "../constants/stripeProductIds";
 
 const Pricing: NextPage = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -42,7 +46,7 @@ const Pricing: NextPage = () => {
               <>
                 {user ? (
                   <StripeForm
-                    productId={"prod_Kzm3dAzd9RU7Uv"}
+                    productId={SpecialOfferTenTrip}
                     onSubmit={() => {
                       setSubmitLoading(true);
                     }}
@@ -78,7 +82,7 @@ const Pricing: NextPage = () => {
               <>
                 {user ? (
                   <StripeForm
-                    productId={"prod_Kzm4dqTw3ai79E"}
+                    productId={TenTripStudentPass}
                     onSubmit={() => {
                       setSubmitLoading(true);
                     }}

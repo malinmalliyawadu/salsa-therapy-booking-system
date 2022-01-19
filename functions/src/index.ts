@@ -22,7 +22,7 @@ app.post("/create-checkout-session", async (req: any, res: any) => {
     ],
     payment_method_types: ["card"],
     mode: "payment",
-    success_url: `${YOUR_DOMAIN}/booking/success/?classId=${req.body.classId}`,
+    success_url: `${YOUR_DOMAIN}/booking/success/?id=${req.body.classId}`,
     cancel_url: req.headers.referer || `${YOUR_DOMAIN}`,
   });
 
