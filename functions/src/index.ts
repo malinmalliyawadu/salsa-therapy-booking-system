@@ -16,7 +16,7 @@ app.post("/create-checkout-session", async (req: any, res: any) => {
     customer_email: req.body.email,
     line_items: [
       {
-        price: "price_1K5OlDEUkqcePY5eaREkpGa1",
+        price: req.body.productId,
         quantity: "1",
       },
     ],

@@ -1,8 +1,16 @@
+import { getAuth } from "firebase/auth";
 import { NextPage } from "next";
+import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Button } from "../components/Button";
+import { ButtonLink } from "../components/ButtonLink";
 import { PriceCard } from "../components/PriceCard";
+import { StripeForm } from "../components/StripeForm";
 
 const Pricing: NextPage = () => {
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [user, userLoading, userError] = useAuthState(getAuth());
+
   return (
     <div className="my-6">
       <h1 className="font-bold text-6xl mb-2">Membership Options</h1>
@@ -13,41 +21,95 @@ const Pricing: NextPage = () => {
             name={"Casual rate"}
             description={"Book and drop-in"}
             price={20}
-            point1={"1 casual class"}
-            point2={"Any level or style"}
-            point3={"Buy and book"}
-            callToAction={"BOOK A CLASS"}
+            points={["1 casual class", "Any level or style", "Buy and book"]}
+            callToAction={
+              <ButtonLink href="/" className="block">
+                BOOK A CLASS
+              </ButtonLink>
+            }
           />
 
           <PriceCard
             name={"Special offer 10 trip"}
             description={"Save $20 with this package"}
             price={160}
-            point1={"Choose ANY style and ANY level"}
-            point2={"Book ahead"}
-            point3={"Valid for 2 months"}
-            callToAction={"BUY NOW"}
+            points={[
+              "Choose ANY style and ANY level",
+              "Book ahead",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <>
+                {user ? (
+                  <StripeForm
+                    productId={"prod_Kzm3dAzd9RU7Uv"}
+                    onSubmit={() => {
+                      setSubmitLoading(true);
+                    }}
+                  >
+                    <Button
+                      type="submit"
+                      disabled={submitLoading}
+                      className="w-full"
+                    >
+                      {submitLoading ? "PLEASE WAIT..." : "BUY NOW"}
+                    </Button>
+                  </StripeForm>
+                ) : (
+                  <ButtonLink href="/login" className="block">
+                    BUY NOW
+                  </ButtonLink>
+                )}
+              </>
+            }
             isMostPopular={true}
           />
 
           <PriceCard
-            name={"10 trip pass student"}
+            name={"10 trip student pass"}
             description={"-"}
             price={136}
-            point1={"Choose ANY style and ANY level"}
-            point2={"Book ahead"}
-            point3={"Valid for 2 months"}
-            callToAction={"BUY NOW"}
+            points={[
+              "Choose ANY style and ANY level",
+              "Book ahead",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <>
+                {user ? (
+                  <StripeForm
+                    productId={"prod_Kzm4dqTw3ai79E"}
+                    onSubmit={() => {
+                      setSubmitLoading(true);
+                    }}
+                  >
+                    <Button
+                      type="submit"
+                      disabled={submitLoading}
+                      className="w-full"
+                    >
+                      {submitLoading ? "PLEASE WAIT..." : "BUY NOW"}
+                    </Button>
+                  </StripeForm>
+                ) : (
+                  <ButtonLink href="/login" className="block">
+                    BUY NOW
+                  </ButtonLink>
+                )}
+              </>
+            }
           />
 
           <PriceCard
             name={"Private 1-on-1"}
             description={"-"}
             price={20}
-            point1={"1 casual class"}
-            point2={"Any level or style"}
-            point3={"Buy and book"}
-            callToAction={"ENQUIRE"}
+            points={["1 casual class", "Any level or style", "Buy and book"]}
+            callToAction={
+              <ButtonLink href="mailto:" className="block">
+                ENQUIRE
+              </ButtonLink>
+            }
           />
         </div>
 

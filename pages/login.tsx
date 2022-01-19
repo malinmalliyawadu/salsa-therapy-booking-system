@@ -8,10 +8,7 @@ const Login: NextPage = () => {
   // Configure FirebaseUI.
   const uiConfig = {
     signInFlow: "popup",
-    // Redirect to / after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
     signInSuccessUrl: "/",
-    // GitHub as the only included Auth Provider.
-    // You could add and configure more here!
     signInOptions: [FacebookAuthProvider.PROVIDER_ID],
   };
 

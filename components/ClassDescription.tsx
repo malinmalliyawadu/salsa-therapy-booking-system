@@ -14,6 +14,7 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ButtonLink } from "./ButtonLink";
 import { Modal } from "./Modal";
+import { useBookings } from "../hooks/useBookings";
 
 interface ClassDescriptionProps {
   danceClass: DanceClass;
@@ -26,6 +27,8 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
 }) => {
   const [user, userLoading, userError] = useAuthState(getAuth());
   const [showBookModal, setShowBookModal] = useState(false);
+  const [bookings, bookingsLoading, bookingsError] = useBookings();
+  const isBooked = bookings?.some((y) => y.classId == danceClass.id);
 
   const onBookClassClick = () => {
     setShowBookModal(true);
@@ -83,10 +86,14 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
           <h3 className="text-lg font-bold">Price</h3>
           <div className="flex justify-between items-end">
             <div className="text-5xl">${danceClass.price}</div>
-            {user ? (
-              <Button onClick={onBookClassClick}>Book class</Button>
-            ) : (
-              <ButtonLink href="/login">Book class</ButtonLink>
+            {!isBooked && (
+              <>
+                {user ? (
+                  <Button onClick={onBookClassClick}>Book class</Button>
+                ) : (
+                  <ButtonLink href="/login">Book class</ButtonLink>
+                )}
+              </>
             )}
           </div>
         </div>

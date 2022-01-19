@@ -6,6 +6,7 @@ import { DanceClass } from "../types/DanceClass";
 import { getAuth } from "@firebase/auth";
 import { userInfo } from "os";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { StripeForm } from "./StripeForm";
 
 interface Props {
   show: boolean;
@@ -126,20 +127,12 @@ export const Modal: React.FC<Props> = ({ show, onClose, danceClass }) => {
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-3">
-                <form
-                  className="flex gap-5 flex-col min-w-max"
-                  method="POST"
-                  action="https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/create-checkout-session"
+                <StripeForm
+                  productId={danceClass.id ?? ""}
                   onSubmit={() => {
                     setSubmitLoading(true);
                   }}
                 >
-                  <input
-                    name="classId"
-                    type="hidden"
-                    value={danceClass.id ?? ""}
-                  />
-                  <input name="email" type="hidden" value={user?.email ?? ""} />
                   <Button
                     type="submit"
                     disabled={submitLoading}
@@ -147,7 +140,8 @@ export const Modal: React.FC<Props> = ({ show, onClose, danceClass }) => {
                   >
                     {submitLoading ? "Please wait..." : "Book"}
                   </Button>
-                </form>
+                </StripeForm>
+
                 <Button
                   appearance="secondary"
                   onClick={modalClose}
