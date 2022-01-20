@@ -17,4 +17,5 @@ export interface DanceClass {
     | "Friday"
     | "Saturday"
     | "Sunday";
+  stripeId: string;
 }

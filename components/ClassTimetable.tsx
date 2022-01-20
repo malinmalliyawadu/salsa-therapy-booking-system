@@ -65,7 +65,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
 
   return (
     <div className="flex flex-col justify-center gap-6 flex-shrink-1 flex-grow-0 w-full max-w-md">
-      <div className="w-full shadow-xl border border-purple-500 bg-white flex-1 rounded-md self-start overflow-hidden">
+      <div className="border border-purple-300 w-full filter drop-shadow-lg shadow-lg bg-white flex-1 rounded-md self-start overflow-hidden">
         {(todaysClasses?.length ?? 0) > 0 && (
           <>
             <ClassTimetableRowHeader>Today</ClassTimetableRowHeader>

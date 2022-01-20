@@ -88,7 +88,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
           <div className="flex justify-between items-end">
             <div className="text-5xl">${danceClass.price}</div>
             {isBooked ? (
-              <div className="text-green-600 bg-green-50 py-2 px-4 rounded-xl text-xl">
+              <div className="text-green-600 bg-green-50 py-2 px-4 rounded-3xl text-xl border border-green-300">
                 <CheckIcon className="h-6 w-6 inline-block" /> You're booked for
                 this class
               </div>

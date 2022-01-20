@@ -10,10 +10,10 @@ const BookingSuccess: NextPage = () => {
   const router = useRouter();
   const [user, userLoading, userError] = useAuthState(getAuth());
   const [classes, classesLoading, classesError] = useClasses();
-  const danceClass = classes?.find((x) => x.id === router.query["id"]);
+  const danceClass = classes?.find((x) => x.stripeId === router.query["id"]);
 
   return (
-    <div className="flex justify-center my-32 flex-row gap-8">
+    <div className="flex justify-center my-32 flex-row gap-8 max-w-4xl mx-auto">
       <CheckCircleIcon className="h-40 w-40 text-green-600" />
       <div className="text-left">
         <h6 className="text-purple-700 font-bold">Payment successful</h6>
