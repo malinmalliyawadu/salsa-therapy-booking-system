@@ -50,16 +50,17 @@ export const PriceCard: React.FC<Props> = ({
     <div
       className={`w-11/12 mx-w-sm sm:w-3/5 lg:w-1/3 sm:my-5 my-8 relative transition-all transform hover:scale-105 border border-gray-200 ${
         isMostPopular ? "rounded-b-lg" : "rounded-lg"
-      } mx-2 shadow-md`}
+      } mx-2 shadow-md self-stretch`}
     >
       {isMostPopular && (
-        <div className="text-sm leading-none rounded-t-lg bg-pink-500 text-white font-semibold uppercase py-4 text-center tracking-wide">
+        <div className="text-sm leading-none rounded-t-lg bg-pink-500 text-white font-semibold uppercase py-4 text-center tracking-wide -mt-11">
           Offers Runs till 7th Feb
         </div>
       )}
       <div
-        style={{ minHeight: "500px" }}
-        className="flex flex-col bg-white text-black rounded-lg border-t border-gray-100 shadow-lg overflow-hidden"
+        className={`h-full flex flex-col bg-white text-black rounded-lg border-gray-100 shadow-lg overflow-hidden ${
+          isMostPopular ? "rounded-t-none  bg-pink-50" : ""
+        }`}
       >
         <div className="block text-left text-sm sm:text-md max-w-sm mx-auto mt-2 text-black px-8 lg:px-6">
           <h1 className="flex items-center justify-center text-2xl font-medium uppercase p-3 pb-0 text-center tracking-wide mb-4 h-16">

@@ -9,7 +9,7 @@ export const ClassDescriptionHelp = () => {
       exit={{ opacity: 0 }}
       className="p-4 flex-1 rounded-md self-start"
     >
-      <h2 className="font-bold text-6xl mb-2">Hi there 👋</h2>
+      <h2 className="font-bold text-6xl mb-2 tracking-tight">Hi there 👋</h2>
       <p className="text-lg">Welcome to the Salsa Therapy booking system.</p>
 
       <div className="mt-5 bg-purple-200 rounded-lg p-4 flex items-center gap-3">

@@ -17,10 +17,12 @@ const Pricing: NextPage = () => {
 
   return (
     <div className="my-6">
-      <h1 className="font-bold text-6xl mb-2">Membership Options</h1>
+      <h1 className="font-bold text-6xl mb-2 tracking-tight">
+        Membership Options
+      </h1>
 
       <div className="max-w-full mx-auto my-12">
-        <div className="relative block flex flex-col md:flex-row items-end">
+        <div className="relative block flex flex-col md:flex-row items-start">
           <PriceCard
             name={"Casual rate"}
             description={"Book and drop-in"}
@@ -108,7 +110,13 @@ const Pricing: NextPage = () => {
             name={"Private 1-on-1"}
             description={"-"}
             price={20}
-            points={["1 casual class", "Any level or style", "Buy and book"]}
+            points={[
+              "1 Student w/ 1 Teacher for $45 (per 30mins)",
+              "2 Students w/ 1 Teacher for $45 (per 30mins)",
+              "2 Couples w/ 1 Teacher for $100 ($25 each)",
+              "For x2 Teachers, add $45 per 30mins",
+              "Studio hire... FREE",
+            ]}
             callToAction={
               <ButtonLink href="mailto:" className="block">
                 ENQUIRE
