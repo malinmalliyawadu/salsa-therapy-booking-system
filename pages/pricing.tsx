@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, User } from "firebase/auth";
 import { NextPage } from "next";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -7,9 +7,41 @@ import { ButtonLink } from "../components/ButtonLink";
 import { PriceCard } from "../components/PriceCard";
 import { StripeForm } from "../components/StripeForm";
 import {
+  DameDos,
+  DameTres,
+  DameUna,
+  DileQueSi,
   SpecialOfferTenTrip,
   TenTripStudentPass,
 } from "../constants/stripeProductIds";
+
+const StripeCallToAction: React.FC<{
+  productId: string;
+  user: User | null | undefined;
+  submitLoading: boolean;
+  setSubmitLoading: (value: boolean) => void;
+}> = ({ productId, user, submitLoading, setSubmitLoading }) => {
+  return (
+    <>
+      {user ? (
+        <StripeForm
+          productId={productId}
+          onSubmit={() => {
+            setSubmitLoading(true);
+          }}
+        >
+          <Button type="submit" disabled={submitLoading} className="w-full">
+            {submitLoading ? "PLEASE WAIT..." : "BUY NOW"}
+          </Button>
+        </StripeForm>
+      ) : (
+        <ButtonLink href="/login" className="block">
+          BUY NOW
+        </ButtonLink>
+      )}
+    </>
+  );
+};
 
 const Pricing: NextPage = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -22,7 +54,7 @@ const Pricing: NextPage = () => {
       </h1>
 
       <div className="max-w-full mx-auto my-12">
-        <div className="relative block flex flex-col md:flex-row items-start">
+        <div className="grid grid-cols-4">
           <PriceCard
             name={"Casual rate"}
             description={"Book and drop-in"}
@@ -45,28 +77,12 @@ const Pricing: NextPage = () => {
               "Valid for 2 months",
             ]}
             callToAction={
-              <>
-                {user ? (
-                  <StripeForm
-                    productId={SpecialOfferTenTrip}
-                    onSubmit={() => {
-                      setSubmitLoading(true);
-                    }}
-                  >
-                    <Button
-                      type="submit"
-                      disabled={submitLoading}
-                      className="w-full"
-                    >
-                      {submitLoading ? "PLEASE WAIT..." : "BUY NOW"}
-                    </Button>
-                  </StripeForm>
-                ) : (
-                  <ButtonLink href="/login" className="block">
-                    BUY NOW
-                  </ButtonLink>
-                )}
-              </>
+              <StripeCallToAction
+                productId={SpecialOfferTenTrip}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
             }
             isMostPopular={true}
           />
@@ -81,28 +97,12 @@ const Pricing: NextPage = () => {
               "Valid for 2 months",
             ]}
             callToAction={
-              <>
-                {user ? (
-                  <StripeForm
-                    productId={TenTripStudentPass}
-                    onSubmit={() => {
-                      setSubmitLoading(true);
-                    }}
-                  >
-                    <Button
-                      type="submit"
-                      disabled={submitLoading}
-                      className="w-full"
-                    >
-                      {submitLoading ? "PLEASE WAIT..." : "BUY NOW"}
-                    </Button>
-                  </StripeForm>
-                ) : (
-                  <ButtonLink href="/login" className="block">
-                    BUY NOW
-                  </ButtonLink>
-                )}
-              </>
+              <StripeCallToAction
+                productId={TenTripStudentPass}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
             }
           />
 
@@ -121,6 +121,100 @@ const Pricing: NextPage = () => {
               <ButtonLink href="mailto:" className="block">
                 ENQUIRE
               </ButtonLink>
+            }
+          />
+
+          <PriceCard
+            name={"Dáme Una"}
+            description={"$18 per week"}
+            price={180}
+            points={[
+              "One class per week cancel anytime",
+              "Choose 1 class",
+              "Any style and level",
+              "See Term Dates",
+              "Includes 2 FREE SALSA Practica passes for new students only",
+              "Buy and book",
+              "Booking in advance is essential",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DameUna}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
+            }
+          />
+
+          <PriceCard
+            name={"Dáme Dos"}
+            description={"$27 per week"}
+            price={270}
+            points={[
+              "Two classes per week  cancel anytime",
+              "Any two classes",
+              "Any style and level",
+              "See Term Dates",
+              "1 FREE SALSA Practica passes",
+              "Book ahead",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DameDos}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
+            }
+          />
+
+          <PriceCard
+            name={"Dáme Tres"}
+            description={"$32 per week"}
+            price={320}
+            points={[
+              "Three Classes per week cancel anytime",
+              "PRIME LOCATION",
+              "Any 3 classes",
+              "Any style and level",
+              "1 FREE SALSA Practica passes",
+              "$10 off Private",
+              "Book ahead",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DameTres}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
+            }
+          />
+
+          <PriceCard
+            name={"Díle que si"}
+            description={"$37 per week"}
+            price={370}
+            points={[
+              "UNLIMITED DANCE CLASS (based on 6 month membership)",
+              "PRIME LOCATION",
+              "All dance classes",
+              "Any style and level",
+              "$10 off Private",
+              "5% OFF Performance training",
+              "2 Party Passes SLP",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DileQueSi}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
             }
           />
         </div>
