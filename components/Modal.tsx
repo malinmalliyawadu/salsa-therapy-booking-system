@@ -78,7 +78,7 @@ export const Modal: React.FC<Props> = ({ show, onClose, danceClass }) => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500 mb-6">
-                        Great choice!
+                        {danceClass.description}
                       </p>
 
                       <fieldset className="mb-6">

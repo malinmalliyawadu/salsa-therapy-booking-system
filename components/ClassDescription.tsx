@@ -4,6 +4,7 @@ import {
   ExternalLinkIcon,
   UserGroupIcon,
   XCircleIcon,
+  CheckIcon,
 } from "@heroicons/react/outline";
 import React, { useState } from "react";
 import { DanceClass } from "../types/DanceClass";
@@ -86,7 +87,12 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
           <h3 className="text-lg font-bold">Price</h3>
           <div className="flex justify-between items-end">
             <div className="text-5xl">${danceClass.price}</div>
-            {!isBooked && (
+            {isBooked ? (
+              <div className="text-green-600 bg-green-50 py-2 px-4 rounded-xl text-xl">
+                <CheckIcon className="h-6 w-6 inline-block" /> You're booked for
+                this class
+              </div>
+            ) : (
               <>
                 {user ? (
                   <Button onClick={onBookClassClick}>Book class</Button>
