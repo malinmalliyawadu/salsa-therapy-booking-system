@@ -16,7 +16,7 @@ const Pricing: NextPage = () => {
   const [user, userLoading, userError] = useAuthState(getAuth());
 
   return (
-    <div className="my-6">
+    <div className="m-6">
       <h1 className="font-bold text-6xl mb-2 tracking-tight">
         Membership Options
       </h1>
@@ -125,7 +125,7 @@ const Pricing: NextPage = () => {
           />
         </div>
 
-        <div className="my-10">
+        <div className="my-10 mx-6">
           <h2 className="font-bold mb-4 text-xl">Terms</h2>
           <ul className="list-disc ml-6">
             <li>

@@ -1,5 +1,9 @@
 import { signOut } from "@firebase/auth";
-import { ArrowRightIcon, CheckCircleIcon } from "@heroicons/react/outline";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckCircleIcon,
+} from "@heroicons/react/outline";
 import { getAuth } from "firebase/auth";
 import { NextPage } from "next";
 import { useRouter } from "next/dist/client/router";
@@ -24,30 +28,34 @@ const BookingSuccess: NextPage = () => {
           <span className="text-purple-700">{user?.email}</span>
         </p>
 
-        <div className="border-t border-b border-gray-300 py-4 flex flex-row justify-between">
-          <div>
-            <div className="font-bold">{danceClass?.name}</div>
-            <div>
-              {danceClass?.weekday} {danceClass?.duration} minutes
-            </div>
+        {danceClass && (
+          <>
+            <div className="border-t border-b border-gray-300 py-4 flex flex-row justify-between">
+              <div>
+                <div className="font-bold">{danceClass?.name}</div>
+                <div>
+                  {danceClass?.weekday} {danceClass?.duration} minutes
+                </div>
 
-            <p className="mt-4 text-gray-500">{danceClass?.description}</p>
-          </div>
-          <div>${danceClass?.price}</div>
-        </div>
-        <div className="border-b border-gray-300 py-4 flex flex-row justify-between">
-          <div>
-            <div className="font-bold">Total</div>
-          </div>
-          <div className="font-bold">${danceClass?.price}</div>
-        </div>
+                <p className="mt-4 text-gray-500">{danceClass?.description}</p>
+              </div>
+              <div>${danceClass?.price}</div>
+            </div>
+            <div className="border-b border-gray-300 py-4 flex flex-row justify-between">
+              <div>
+                <div className="font-bold">Total</div>
+              </div>
+              <div className="font-bold">${danceClass?.price}</div>
+            </div>
+          </>
+        )}
 
         <div className="mt-10 self-end">
           <a
             href="/"
             className="flex items-center gap-2 text-purple-700 hover:underline"
           >
-            Back to class timetable <ArrowRightIcon height="16" width="16" />
+            <ArrowLeftIcon height="16" width="16" /> Back to class timetable
           </a>
         </div>
       </div>
