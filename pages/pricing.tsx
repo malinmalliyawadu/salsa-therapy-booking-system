@@ -56,6 +56,104 @@ const Pricing: NextPage = () => {
       <div className="max-w-full mx-auto my-12">
         <div className="grid grid-cols-4">
           <PriceCard
+            name={"Dáme Una"}
+            description={"$18 per week"}
+            price={180}
+            headerBg="bg-green-300"
+            points={[
+              "One class per week cancel anytime",
+              "Choose 1 class",
+              "Any style and level",
+              "See Term Dates",
+              "Includes 2 FREE SALSA Practica passes for new students only",
+              "Buy and book",
+              "Booking in advance is essential",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DameUna}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
+            }
+          />
+
+          <PriceCard
+            name={"Dáme Dos"}
+            description={"$27 per week"}
+            price={270}
+            headerBg="bg-blue-300"
+            points={[
+              "Two classes per week  cancel anytime",
+              "Any two classes",
+              "Any style and level",
+              "See Term Dates",
+              "1 FREE SALSA Practica passes",
+              "Book ahead",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DameDos}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
+            }
+          />
+
+          <PriceCard
+            name={"Dáme Tres"}
+            description={"$32 per week"}
+            price={320}
+            headerBg="bg-yellow-300"
+            points={[
+              "Three Classes per week cancel anytime",
+              "PRIME LOCATION",
+              "Any 3 classes",
+              "Any style and level",
+              "1 FREE SALSA Practica passes",
+              "$10 off Private",
+              "Book ahead",
+              "Valid for 2 months",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DameTres}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
+            }
+          />
+
+          <PriceCard
+            name={"Díle que si"}
+            description={"$37 per week"}
+            price={370}
+            headerBg="bg-red-300"
+            points={[
+              "UNLIMITED DANCE CLASS (based on 6 month membership)",
+              "PRIME LOCATION",
+              "All dance classes",
+              "Any style and level",
+              "$10 off Private",
+              "5% OFF Performance training",
+              "2 Party Passes SLP",
+            ]}
+            callToAction={
+              <StripeCallToAction
+                productId={DileQueSi}
+                user={user}
+                submitLoading={submitLoading}
+                setSubmitLoading={setSubmitLoading}
+              />
+            }
+          />
+
+          <PriceCard
             name={"Casual rate"}
             description={"Book and drop-in"}
             price={20}
@@ -118,103 +216,12 @@ const Pricing: NextPage = () => {
               "Studio hire... FREE",
             ]}
             callToAction={
-              <ButtonLink href="mailto:" className="block">
+              <ButtonLink
+                href="mailto:lily@salsatherapy.co.nz"
+                className="block"
+              >
                 ENQUIRE
               </ButtonLink>
-            }
-          />
-
-          <PriceCard
-            name={"Dáme Una"}
-            description={"$18 per week"}
-            price={180}
-            points={[
-              "One class per week cancel anytime",
-              "Choose 1 class",
-              "Any style and level",
-              "See Term Dates",
-              "Includes 2 FREE SALSA Practica passes for new students only",
-              "Buy and book",
-              "Booking in advance is essential",
-              "Valid for 2 months",
-            ]}
-            callToAction={
-              <StripeCallToAction
-                productId={DameUna}
-                user={user}
-                submitLoading={submitLoading}
-                setSubmitLoading={setSubmitLoading}
-              />
-            }
-          />
-
-          <PriceCard
-            name={"Dáme Dos"}
-            description={"$27 per week"}
-            price={270}
-            points={[
-              "Two classes per week  cancel anytime",
-              "Any two classes",
-              "Any style and level",
-              "See Term Dates",
-              "1 FREE SALSA Practica passes",
-              "Book ahead",
-              "Valid for 2 months",
-            ]}
-            callToAction={
-              <StripeCallToAction
-                productId={DameDos}
-                user={user}
-                submitLoading={submitLoading}
-                setSubmitLoading={setSubmitLoading}
-              />
-            }
-          />
-
-          <PriceCard
-            name={"Dáme Tres"}
-            description={"$32 per week"}
-            price={320}
-            points={[
-              "Three Classes per week cancel anytime",
-              "PRIME LOCATION",
-              "Any 3 classes",
-              "Any style and level",
-              "1 FREE SALSA Practica passes",
-              "$10 off Private",
-              "Book ahead",
-              "Valid for 2 months",
-            ]}
-            callToAction={
-              <StripeCallToAction
-                productId={DameTres}
-                user={user}
-                submitLoading={submitLoading}
-                setSubmitLoading={setSubmitLoading}
-              />
-            }
-          />
-
-          <PriceCard
-            name={"Díle que si"}
-            description={"$37 per week"}
-            price={370}
-            points={[
-              "UNLIMITED DANCE CLASS (based on 6 month membership)",
-              "PRIME LOCATION",
-              "All dance classes",
-              "Any style and level",
-              "$10 off Private",
-              "5% OFF Performance training",
-              "2 Party Passes SLP",
-            ]}
-            callToAction={
-              <StripeCallToAction
-                productId={DileQueSi}
-                user={user}
-                submitLoading={submitLoading}
-                setSubmitLoading={setSubmitLoading}
-              />
             }
           />
         </div>

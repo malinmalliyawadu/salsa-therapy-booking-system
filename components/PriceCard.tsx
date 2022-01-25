@@ -9,6 +9,7 @@ interface Props {
   points: string[];
   callToAction: ReactNode;
   isMostPopular?: boolean;
+  headerBg?: string;
 }
 
 interface PointProps {
@@ -35,6 +36,7 @@ export const PriceCard: React.FC<Props> = ({
   points,
   callToAction,
   isMostPopular = false,
+  headerBg = "transparent",
 }) => {
   return (
     <div
@@ -53,7 +55,9 @@ export const PriceCard: React.FC<Props> = ({
         }`}
       >
         <div className="block text-left text-sm sm:text-md max-w-sm mx-auto mt-2 text-black px-8 lg:px-6">
-          <h1 className="flex items-center justify-center text-2xl font-medium uppercase p-3 pb-0 text-center tracking-wide mb-4 h-16">
+          <h1
+            className={`rounded flex items-center justify-center text-2xl font-medium uppercase m-2 p-1 px-6 text-center tracking-wide mb-4 h-16 ${headerBg}`}
+          >
             {name}
           </h1>
           <h2 className="text-6xl text-purple-500 text-center font-bold">
