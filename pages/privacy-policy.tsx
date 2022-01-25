@@ -537,7 +537,13 @@ const PrivacyPolicy: NextPage = () => {
         If you have any questions about this Privacy Policy, You can contact us:
       </P>
       <Ul>
-        <li>By phone number: 0210346155</li>
+        <li>
+          By email:{" "}
+          <a href="mailto:lily@salsatherapy.co.nz">lily@salsatherapy.co.nz</a>
+        </li>
+        <li>
+          By phone number: <a href="tel:0210346155">0210346155</a>
+        </li>
       </Ul>
     </div>
   );
