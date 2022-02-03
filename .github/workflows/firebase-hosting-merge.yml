@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create env file
-      run: |
-        touch .env
-        echo FIREBASE_TOKEN=${{ secrets.FIREBASE_TOKEN }} >> .env
-        cat .env
+        run: |
+          touch .env
+          echo FIREBASE_TOKEN=${{ secrets.FIREBASE_TOKEN }} >> .env
+          cat .env
       - uses: actions/checkout@v2
       - run: npm ci && npm run build
       - name: Deploy to Firebase
