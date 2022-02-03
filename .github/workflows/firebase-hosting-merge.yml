@@ -6,6 +6,11 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - main
+
+defaults:
+  run:
+    working-directory: functions
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -17,7 +22,6 @@ jobs:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - run: cd functions
-      - run: npm ci
+      - run: npm ci && npm run build
       - name: Deploy to Firebase
         uses: Accelery/firebase-deploy-functions-action@v2
