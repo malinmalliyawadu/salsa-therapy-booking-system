@@ -1,8 +1,8 @@
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 const express = require("express");
 const app = express();
 app.use(express.static("public"));
 const functions = require("firebase-functions");
+const stripe = require("stripe")(functions.config().stripe.secret);
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
