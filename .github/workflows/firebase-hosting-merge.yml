@@ -24,6 +24,7 @@ jobs:
         run: |
           touch .env
           echo FIREBASE_TOKEN=${{ secrets.FIREBASE_TOKEN }} >> .env
+          echo STRIPE_PRIVATE_KEY=${{ secrets.STRIPE_PRIVATE_KEY }} >> .env
           cat .env
       - run: npm ci && npm run build
       - name: Deploy to Firebase
