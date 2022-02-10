@@ -57,6 +57,7 @@ const Pricing: NextPage = () => {
       <h1 className="font-bold text-6xl mb-2 tracking-tight">Pricing</h1>
 
       <div className="max-w-full mx-auto my-12">
+        <h2 className="font-bold text-3xl mb-2 tracking-tight">Term packages:</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <PriceCard
             name={'Dáme Una'}
@@ -146,7 +147,10 @@ const Pricing: NextPage = () => {
               />
             }
           />
+        </div>
 
+        <h2 className="font-bold text-3xl mb-2 tracking-tight">Casual pricing:</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <PriceCard
             name={'Single class'}
             price={20}
@@ -203,7 +207,6 @@ const Pricing: NextPage = () => {
             }
           />
         </div>
-        {/* TODO: have a 'Student pricing:' heading */}
 
         <h2 className="font-bold text-3xl mb-2 tracking-tight">Student pricing:</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
