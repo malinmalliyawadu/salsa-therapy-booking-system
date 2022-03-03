@@ -66,6 +66,29 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
   return (
     <div className="flex flex-col justify-center gap-6 flex-shrink-1 flex-grow-0 w-full max-w-md">
       <div className="border border-purple-300 w-full filter drop-shadow-lg shadow-lg bg-white flex-1 rounded-md self-start overflow-hidden">
+        {!todaysClasses?.length &&
+          !tomorrowsClasses?.length &&
+          !thisMonthsClasses?.length && (
+            <div className="flex flex-col place-items-center justify-center h-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-24 w-24 text-gray-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div className="text-xl mt-3">
+                No classes at the moment sorry!
+              </div>
+            </div>
+          )}
         {(todaysClasses?.length ?? 0) > 0 && (
           <>
             <ClassTimetableRowHeader>Today</ClassTimetableRowHeader>
