@@ -1,6 +1,7 @@
 import React from "react";
 import "firebase/firestore";
 import {
+  EmailAuthProvider,
   FacebookAuthProvider,
   getAuth,
   GoogleAuthProvider,
@@ -16,6 +17,7 @@ const Login: NextPage = () => {
     signInOptions: [
       GoogleAuthProvider.PROVIDER_ID,
       FacebookAuthProvider.PROVIDER_ID,
+      EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,
     ],
   };
 
