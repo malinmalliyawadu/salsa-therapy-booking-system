@@ -1,6 +1,10 @@
 import React from "react";
 import "firebase/firestore";
-import { FacebookAuthProvider, getAuth } from "firebase/auth";
+import {
+  FacebookAuthProvider,
+  getAuth,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { NextPage } from "next";
 
@@ -9,7 +13,10 @@ const Login: NextPage = () => {
   const uiConfig = {
     signInFlow: "popup",
     signInSuccessUrl: "/",
-    signInOptions: [FacebookAuthProvider.PROVIDER_ID],
+    signInOptions: [
+      GoogleAuthProvider.PROVIDER_ID,
+      FacebookAuthProvider.PROVIDER_ID,
+    ],
   };
 
   return (
