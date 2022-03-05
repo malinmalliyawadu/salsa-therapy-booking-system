@@ -2,6 +2,14 @@
 
 ## ⚡️ Getting Started
 
+Create a `.env.local` file with the following values pulled from the Firebase project.
+
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=<apiKey>
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<messagingSenderId>
+NEXT_PUBLIC_FIREBASE_APP_ID=<appId>
+```
+
 First, run the development server:
 
 ```bash
