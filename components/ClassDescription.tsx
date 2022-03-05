@@ -16,6 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { ButtonLink } from "./ButtonLink";
 import { Modal } from "./Modal";
 import { useBookings } from "../hooks/useBookings";
+import { StripeForm } from "./StripeForm";
 
 interface ClassDescriptionProps {
   danceClass: DanceClass;
@@ -30,6 +31,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
   const [showBookModal, setShowBookModal] = useState(false);
   const [bookings, bookingsLoading, bookingsError] = useBookings();
   const isBooked = bookings?.some((y) => y.classId == danceClass.id);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   const onBookClassClick = () => {
     setShowBookModal(true);
@@ -38,9 +40,80 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
   return (
     <>
       <Modal
-        danceClass={danceClass}
         show={showBookModal}
         onClose={() => setShowBookModal(false)}
+        title={<>Book {danceClass.name}</>}
+        bodyContent={
+          <>
+            <p className="text-sm text-gray-500 mb-6">
+              {danceClass.description}
+            </p>
+
+            <fieldset className="mb-6">
+              <div>
+                <legend className="text-base font-medium text-gray-900">
+                  Dancer type
+                </legend>
+                <p className="text-sm text-gray-500">
+                  To ensure we've got a balance in the class please let us know
+                  what type of dancer you are.
+                </p>
+              </div>
+              <div className="mt-4 space-y-4">
+                <div className="flex items-center">
+                  <input
+                    id="push-everything"
+                    name="push-notifications"
+                    type="radio"
+                    className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                  />
+                  <label
+                    htmlFor="push-everything"
+                    className="ml-3 block text-sm font-medium text-gray-700"
+                  >
+                    Leader
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="push-email"
+                    name="push-notifications"
+                    type="radio"
+                    className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                  />
+                  <label
+                    htmlFor="push-email"
+                    className="ml-3 block text-sm font-medium text-gray-700"
+                  >
+                    Follower
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </>
+        }
+        footerContent={
+          <>
+            <StripeForm
+              productId={danceClass.stripeId ?? ""}
+              onSubmit={() => {
+                setSubmitLoading(true);
+              }}
+            >
+              <Button type="submit" disabled={submitLoading} className="w-32">
+                {submitLoading ? "Please wait..." : "Book"}
+              </Button>
+            </StripeForm>
+
+            <Button
+              appearance="secondary"
+              onClick={() => setShowBookModal(false)}
+              disabled={submitLoading}
+            >
+              Cancel
+            </Button>
+          </>
+        }
       />
       <motion.div
         initial={{ opacity: 0, scale: 0.2 }}

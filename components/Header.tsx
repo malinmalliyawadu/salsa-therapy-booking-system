@@ -14,7 +14,7 @@ export const Header = () => {
   const router = useRouter();
 
   return (
-    <header className="z-50 shadow-sm sticky py-6 px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
+    <header className="z-10 shadow-sm sticky py-6 px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
       <a href="/">
         <img src="/logo.png" width="75" height="45" />
       </a>
