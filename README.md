@@ -18,7 +18,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Configuration
+## ⚙️ Configuration
 
 Set the Stripe secret key in Firebase
 
@@ -26,7 +26,7 @@ Set the Stripe secret key in Firebase
 firebase functions:config:set stripe.secret=<STRIPE LIVE SECRET KEY>
 ```
 
-## Deployment
+## 🚀 Deployment
 
 ### Frontend
 
