@@ -2,6 +2,7 @@ import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import dayjs from "dayjs";
 import { NextPage } from "next";
 import { useState } from "react";
+import { AddClassModal } from "../../components/AddClassModal";
 import { Button } from "../../components/Button";
 import { FormElement } from "../../components/FormElement";
 import { Modal } from "../../components/Modal";
@@ -24,6 +25,7 @@ const TD: React.FC<{ className?: string }> = ({ children, className }) => (
 const Classes: NextPage = () => {
   const [classes, loading, error] = useClasses();
   const [showAddClassModal, setShowAddClassModal] = useState(false);
+  const [editClassModalClassId, setEditClassModalClassId] = useState<number>();
 
   const onAddClassModal = () => {
     setShowAddClassModal(true);
@@ -31,38 +33,9 @@ const Classes: NextPage = () => {
 
   return (
     <div className="m-6">
-      <Modal
-        show={showAddClassModal}
-        onClose={() => setShowAddClassModal(false)}
-        title={<>Add a class</>}
-        bodyContent={
-          <div>
-            <FormElement name="name" label="Name" />
-            <FormElement
-              name="description"
-              label="Description"
-              type="textarea"
-            />
-            <FormElement name="duration" label="Duration" type="number" />
-            <FormElement name="weekday" label="Weekday" type="weekday" />
-            <FormElement name="startDate" label="Start Date" type="calendar" />
-            <FormElement name="endDate" label="End Date" type="calendar" />
-            <FormElement name="maxPeople" label="Max People" type="number" />
-            <FormElement name="price" label="Price" type="number" />
-            <FormElement name="stripeId" label="Stripe Id" />
-          </div>
-        }
-        footerContent={
-          <>
-            <Button>Add</Button>
-            <Button
-              appearance="secondary"
-              onClick={() => setShowAddClassModal(false)}
-            >
-              Cancel
-            </Button>
-          </>
-        }
+      <AddClassModal
+        showAddClassModal={showAddClassModal}
+        setShowAddClassModal={setShowAddClassModal}
       />
       <div className="float-right">
         <Button onClick={onAddClassModal}>
@@ -88,7 +61,6 @@ const Classes: NextPage = () => {
                       <TH>Start Date</TH>
                       <TH>End Date</TH>
                       <TH>Max People</TH>
-                      <TH>Price</TH>
                       <TH>Stripe Id</TH>
                       <TH>Actions</TH>
                     </tr>
@@ -104,12 +76,30 @@ const Classes: NextPage = () => {
                         <TD>{dayjs(x.startDate).format("D MMMM YYYY")}</TD>
                         <TD>{dayjs(x.endDate).format("D MMMM YYYY")}</TD>
                         <TD>{x.maxPeople}</TD>
-                        <TD>{x.price}</TD>
                         <TD className="w-5 truncate text-ellipsis">
                           {x.stripeId}
                         </TD>
                         <TD className="flex gap-2">
-                          <Button>
+                          <AddClassModal
+                            setShowAddClassModal={(show) =>
+                              setEditClassModalClassId(
+                                show ? Number(x.id) : undefined
+                              )
+                            }
+                            showAddClassModal={
+                              editClassModalClassId === Number(x.id)
+                            }
+                            classId={Number(x.id)}
+                            initialState={{
+                              ...x,
+                              duration: Number(x.duration),
+                            }}
+                          />
+                          <Button
+                            onClick={() =>
+                              setEditClassModalClassId(Number(x.id))
+                            }
+                          >
                             <PencilIcon className="w-4 h-4 inline-block" /> Edit
                           </Button>
                           <Button>
