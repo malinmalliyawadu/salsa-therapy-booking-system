@@ -31,8 +31,7 @@ firebase functions:config:set stripe.secret=<STRIPE LIVE SECRET KEY>
 ### Frontend
 
 ```
-npm run build
-npx firebase deploy --only hosting
+npm run deploy
 ```
 
 ### Backend
