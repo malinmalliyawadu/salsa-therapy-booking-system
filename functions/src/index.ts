@@ -8,6 +8,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const YOUR_DOMAIN = "https://salsa-therapy-booking-system.web.app/";
 
+app.get("/product/:stripeId/price", async (req: any, res: any) => {
+  const stripeId = req.params.stripeId;
+
+  const price = await stripe.prices.list({ product: stripeId });
+
+  res.send(price.data);
+});
+
 app.post("/create-checkout-session", async (req: any, res: any) => {
   console.log(req.body);
   const session = await stripe.checkout.sessions.create({
