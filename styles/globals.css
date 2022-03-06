@@ -11,8 +11,12 @@ body {
 }
 
 a {
-    color: inherit;
     text-decoration: none;
+    color: rgb(139, 92, 246);
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 * {
