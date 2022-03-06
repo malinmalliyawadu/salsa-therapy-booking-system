@@ -52,7 +52,12 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                 onClose={() => setShowBookModal(false)}
                 title={<>Book {danceClass.name}</>}
                 bodyContent={
-                    <>
+                    <StripeForm
+                        priceId={danceClass.stripeId ?? ''}
+                        onSubmit={() => {
+                            setSubmitLoading(true);
+                        }}
+                    >
                         <p className="text-sm text-gray-500 mb-6">
                             {danceClass.description}
                         </p>
@@ -72,8 +77,9 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                 <div className="flex items-center">
                                     <input
                                         id="leader"
-                                        name="leader"
+                                        name="dancerType"
                                         type="radio"
+                                        value="Leader"
                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                     />
                                     <label
@@ -86,8 +92,9 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                 <div className="flex items-center">
                                     <input
                                         id="follower"
-                                        name="follower"
+                                        name="dancerType"
                                         type="radio"
+                                        value="Follower"
                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                     />
                                     <label
@@ -99,16 +106,8 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                 </div>
                             </div>
                         </fieldset>
-                    </>
-                }
-                footerContent={
-                    <>
-                        <StripeForm
-                            priceId={danceClass.stripeId ?? ''}
-                            onSubmit={() => {
-                                setSubmitLoading(true);
-                            }}
-                        >
+
+                        <div className="bg-gray-50 px-4 py-6 -mx-10 -mb-4 sm:px-10 sm:flex sm:flex-row-reverse gap-3">
                             <Button
                                 type="submit"
                                 disabled={submitLoading}
@@ -116,18 +115,19 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                             >
                                 {submitLoading ? 'Please wait...' : 'Book'}
                             </Button>
-                        </StripeForm>
 
-                        <Button
-                            appearance="secondary"
-                            onClick={() => setShowBookModal(false)}
-                            disabled={submitLoading}
-                        >
-                            Cancel
-                        </Button>
-                    </>
+                            <Button
+                                appearance="secondary"
+                                onClick={() => setShowBookModal(false)}
+                                disabled={submitLoading}
+                            >
+                                Cancel
+                            </Button>
+                        </div>
+                    </StripeForm>
                 }
             />
+
             <motion.div
                 initial={{ opacity: 0, scale: 0.2 }}
                 animate={{ opacity: 1, scale: 1 }}

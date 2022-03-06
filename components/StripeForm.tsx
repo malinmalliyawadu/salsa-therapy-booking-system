@@ -16,7 +16,6 @@ export const StripeForm: React.FC<Props> = ({
 
     return (
         <form
-            className="flex gap-5 flex-col min-w-max"
             method="POST"
             action="https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/create-checkout-session"
             onSubmit={onSubmit}

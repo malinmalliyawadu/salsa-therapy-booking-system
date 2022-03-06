@@ -33,7 +33,7 @@ app.post('/create-checkout-session', async (req, res) => {
         ],
         payment_method_types: ['card'],
         mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/booking/success/?id=${req.body.priceId}`,
+        success_url: `${YOUR_DOMAIN}/booking/success/?id=${req.body.priceId}&dancerType=${req.body.dancerType}`,
         cancel_url: req.headers.referer || `${YOUR_DOMAIN}`,
     });
 

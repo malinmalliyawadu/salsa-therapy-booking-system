@@ -10,7 +10,7 @@ interface Props {
     show: boolean;
     onClose: () => void;
     bodyContent: ReactNode;
-    footerContent: ReactNode;
+    footerContent?: ReactNode;
     title: ReactNode;
 }
 
@@ -86,9 +86,11 @@ export const Modal: React.FC<Props> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-gray-50 px-4 py-6 sm:px-10 sm:flex sm:flex-row-reverse gap-3">
-                                {footerContent}
-                            </div>
+                            {footerContent && (
+                                <div className="bg-gray-50 px-4 py-6 sm:px-10 sm:flex sm:flex-row-reverse gap-3">
+                                    {footerContent}
+                                </div>
+                            )}
                         </div>
                     </Transition.Child>
                 </div>
