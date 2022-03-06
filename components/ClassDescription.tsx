@@ -71,13 +71,13 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                             <div className="mt-4 space-y-4">
                                 <div className="flex items-center">
                                     <input
-                                        id="push-everything"
-                                        name="push-notifications"
+                                        id="leader"
+                                        name="leader"
                                         type="radio"
                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                     />
                                     <label
-                                        htmlFor="push-everything"
+                                        htmlFor="leader"
                                         className="ml-3 block text-sm font-medium text-gray-700"
                                     >
                                         Leader
@@ -85,13 +85,13 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                 </div>
                                 <div className="flex items-center">
                                     <input
-                                        id="push-email"
-                                        name="push-notifications"
+                                        id="follower"
+                                        name="follower"
                                         type="radio"
                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                     />
                                     <label
-                                        htmlFor="push-email"
+                                        htmlFor="follower"
                                         className="ml-3 block text-sm font-medium text-gray-700"
                                     >
                                         Follower
