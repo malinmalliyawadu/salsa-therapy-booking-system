@@ -1,5 +1,7 @@
+import { getDatabase } from "@firebase/database";
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import dayjs from "dayjs";
+import { ref, remove } from "firebase/database";
 import { NextPage } from "next";
 import { useState } from "react";
 import { AddClassModal } from "../../components/AddClassModal";
@@ -26,9 +28,15 @@ const Classes: NextPage = () => {
   const [classes, loading, error] = useClasses();
   const [showAddClassModal, setShowAddClassModal] = useState(false);
   const [editClassModalClassId, setEditClassModalClassId] = useState<number>();
+  const [deleteClassModalClassId, setDeleteClassModalClassId] =
+    useState<number>();
 
   const onAddClassModal = () => {
     setShowAddClassModal(true);
+  };
+
+  const onDelete = () => {
+    remove(ref(getDatabase(), `classes/${deleteClassModalClassId}`));
   };
 
   return (
@@ -102,7 +110,33 @@ const Classes: NextPage = () => {
                           >
                             <PencilIcon className="w-4 h-4 inline-block" /> Edit
                           </Button>
-                          <Button>
+
+                          <Modal
+                            onClose={() =>
+                              setDeleteClassModalClassId(undefined)
+                            }
+                            show={deleteClassModalClassId === Number(x.id)}
+                            title="Are you sure you want to delete this class?"
+                            bodyContent={`${x.name}`}
+                            footerContent={
+                              <>
+                                <Button onClick={onDelete}>Delete</Button>
+                                <Button
+                                  appearance="secondary"
+                                  onClick={() =>
+                                    setDeleteClassModalClassId(undefined)
+                                  }
+                                >
+                                  Cancel
+                                </Button>
+                              </>
+                            }
+                          />
+                          <Button
+                            onClick={() =>
+                              setDeleteClassModalClassId(Number(x.id))
+                            }
+                          >
                             <TrashIcon className="w-4 h-4 inline-block" />{" "}
                             Delete
                           </Button>

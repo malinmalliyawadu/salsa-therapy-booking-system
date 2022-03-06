@@ -43,6 +43,8 @@ export const AddClassModal: React.FC<Props> = ({
       startDate: dayjs(formData.startDate).format("YYYY-MM-DD"),
       endDate: dayjs(formData.endDate).format("YYYY-MM-DD"),
     });
+
+    setShowAddClassModal(false);
   };
 
   return (
@@ -118,7 +120,7 @@ export const AddClassModal: React.FC<Props> = ({
       }
       footerContent={
         <>
-          <Button onClick={onSave}>Add</Button>
+          <Button onClick={onSave}>{`${classId ? "Update" : "Add"}`}</Button>
           <Button
             appearance="secondary"
             onClick={() => setShowAddClassModal(false)}
