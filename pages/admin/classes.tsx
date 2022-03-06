@@ -1,20 +1,20 @@
-import { getDatabase } from '@firebase/database'
-import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/outline'
-import dayjs from 'dayjs'
-import { ref, remove } from 'firebase/database'
-import { NextPage } from 'next'
-import { useState } from 'react'
-import { AddClassModal } from '../../components/AddClassModal'
-import { Button } from '../../components/Button'
-import { FormElement } from '../../components/FormElement'
-import { Modal } from '../../components/Modal'
-import { useClasses } from '../../hooks/useClasses'
+import { getDatabase } from '@firebase/database';
+import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/outline';
+import dayjs from 'dayjs';
+import { ref, remove } from 'firebase/database';
+import { NextPage } from 'next';
+import { useState } from 'react';
+import { AddClassModal } from '../../components/AddClassModal';
+import { Button } from '../../components/Button';
+import { Loading } from '../../components/Loading';
+import { Modal } from '../../components/Modal';
+import { useClasses } from '../../hooks/useClasses';
 
 const TH: React.FC = ({ children }) => (
     <th className="align-bottom py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">
         {children}
     </th>
-)
+);
 
 const TD: React.FC<{ className?: string }> = ({ children, className }) => (
     <td
@@ -22,22 +22,23 @@ const TD: React.FC<{ className?: string }> = ({ children, className }) => (
     >
         {children}
     </td>
-)
+);
 
 const Classes: NextPage = () => {
-    const [classes, loading, error] = useClasses()
-    const [showAddClassModal, setShowAddClassModal] = useState(false)
-    const [editClassModalClassId, setEditClassModalClassId] = useState<number>()
+    const [classes, loading, error] = useClasses();
+    const [showAddClassModal, setShowAddClassModal] = useState(false);
+    const [editClassModalClassId, setEditClassModalClassId] =
+        useState<number>();
     const [deleteClassModalClassId, setDeleteClassModalClassId] =
-        useState<number>()
+        useState<number>();
 
     const onAddClassModal = () => {
-        setShowAddClassModal(true)
-    }
+        setShowAddClassModal(true);
+    };
 
     const onDelete = () => {
-        remove(ref(getDatabase(), `classes/${deleteClassModalClassId}`))
-    }
+        remove(ref(getDatabase(), `classes/${deleteClassModalClassId}`));
+    };
 
     return (
         <div className="m-6">
@@ -54,7 +55,11 @@ const Classes: NextPage = () => {
                 Manage Classes
             </h1>
 
-            {loading && <div>Loading classes...</div>}
+            {loading && (
+                <div className="flex flex-col justify-center w-full max-w-md p-16 m-auto">
+                    <Loading />
+                </div>
+            )}
 
             {(classes?.length || 0) > 0 && (
                 <div className="flex flex-col">
@@ -71,7 +76,6 @@ const Classes: NextPage = () => {
                                             <TH>Start Date</TH>
                                             <TH>End Date</TH>
                                             <TH>Max People</TH>
-                                            <TH>Stripe Id</TH>
                                             <TH>Actions</TH>
                                         </tr>
                                     </thead>
@@ -94,9 +98,6 @@ const Classes: NextPage = () => {
                                                     )}
                                                 </TD>
                                                 <TD>{x.maxPeople}</TD>
-                                                <TD className="w-5 truncate text-ellipsis">
-                                                    {x.stripeId}
-                                                </TD>
                                                 <TD className="flex gap-2">
                                                     <AddClassModal
                                                         setShowAddClassModal={(
@@ -188,7 +189,7 @@ const Classes: NextPage = () => {
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default Classes
+export default Classes;

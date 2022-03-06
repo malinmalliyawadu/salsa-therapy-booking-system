@@ -1,24 +1,26 @@
-import { NextPage } from 'next'
+import { NextPage } from 'next';
 
 const H2: React.FC = ({ children }) => {
     return (
         <h2 className="font-bold text-4xl mb-2 tracking-tight">{children}</h2>
-    )
-}
+    );
+};
 const H3: React.FC = ({ children }) => {
     return (
         <h3 className="font-bold text-2xl mb-2 tracking-tight">{children}</h3>
-    )
-}
+    );
+};
 const H4: React.FC = ({ children }) => {
-    return <h4 className="font-bold text-lg mb-2 tracking-tight">{children}</h4>
-}
+    return (
+        <h4 className="font-bold text-lg mb-2 tracking-tight">{children}</h4>
+    );
+};
 const P: React.FC = ({ children }) => {
-    return <p className="my-4">{children}</p>
-}
+    return <p className="my-4">{children}</p>;
+};
 const Ul: React.FC = ({ children }) => {
-    return <ul className="list-disc ml-6 mb-6">{children}</ul>
-}
+    return <ul className="list-disc ml-6 mb-6">{children}</ul>;
+};
 
 const PrivacyPolicy: NextPage = () => {
     return (
@@ -598,7 +600,7 @@ const PrivacyPolicy: NextPage = () => {
                 </li>
             </Ul>
         </div>
-    )
-}
+    );
+};
 
-export default PrivacyPolicy
+export default PrivacyPolicy;

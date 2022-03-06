@@ -1,17 +1,17 @@
-import { getAuth } from 'firebase/auth'
-import { useRouter } from 'next/dist/client/router'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { HeaderNavLink } from './HeaderNavLink'
-import { Menu, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { getAuth } from 'firebase/auth';
+import { useRouter } from 'next/dist/client/router';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { HeaderNavLink } from './HeaderNavLink';
+import { Menu, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
 
 function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ');
 }
 
 export const Header = () => {
-    const [user, loading, error] = useAuthState(getAuth())
-    const router = useRouter()
+    const [user, loading, error] = useAuthState(getAuth());
+    const router = useRouter();
 
     return (
         <header className="z-10 shadow-sm sticky py-6 px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
@@ -99,5 +99,5 @@ export const Header = () => {
                 </>
             </nav>
         </header>
-    )
-}
+    );
+};

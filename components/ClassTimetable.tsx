@@ -1,29 +1,29 @@
-import dayjs from 'dayjs'
-import React, { useEffect, useState } from 'react'
-import { useBookings } from '../hooks/useBookings'
-import { useClasses } from '../hooks/useClasses'
-import { DanceClass } from '../types/DanceClass'
-import { Button } from './Button'
-import { ClassTimetableRow } from './ClassTimetableRow'
-import { ClassTimetableRowHeader } from './ClassTimetableRowHeader'
-import { Loading } from './Loading'
+import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
+import { useBookings } from '../hooks/useBookings';
+import { useClasses } from '../hooks/useClasses';
+import { DanceClass } from '../types/DanceClass';
+import { Button } from './Button';
+import { ClassTimetableRow } from './ClassTimetableRow';
+import { ClassTimetableRowHeader } from './ClassTimetableRowHeader';
+import { Loading } from './Loading';
 
 interface ClassTimetableProps {
-    onRowClick: (danceClass: DanceClass) => void
-    selectedClass?: DanceClass
+    onRowClick: (danceClass: DanceClass) => void;
+    selectedClass?: DanceClass;
 }
 
 export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     onRowClick,
     selectedClass,
 }) => {
-    const [classes, loading, error] = useClasses()
-    const [bookings, bookingsLoading, bookingsError] = useBookings()
-    const [selectedClassId, setSelectedClassId] = useState<string>()
+    const [classes, loading, error] = useClasses();
+    const [bookings, bookingsLoading, bookingsError] = useBookings();
+    const [selectedClassId, setSelectedClassId] = useState<string>();
 
     useEffect(() => {
-        setSelectedClassId(selectedClass?.id ?? undefined)
-    }, [selectedClass])
+        setSelectedClassId(selectedClass?.id ?? undefined);
+    }, [selectedClass]);
 
     const weekdays = [
         'Sunday',
@@ -33,37 +33,37 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
         'Thursday',
         'Friday',
         'Saturday',
-    ]
-    const today = dayjs()
-    const tomorrow = dayjs().add(1, 'day')
+    ];
+    const today = dayjs();
+    const tomorrow = dayjs().add(1, 'day');
     const todaysClasses = classes
         ?.filter(
             (x) => dayjs(x.startDate) <= today && dayjs(x.endDate) >= today
         )
-        .filter((x) => x.weekday === today.format('dddd'))
+        .filter((x) => x.weekday === today.format('dddd'));
     const tomorrowsClasses = classes
         ?.filter(
             (x) =>
                 dayjs(x.startDate) <= tomorrow && dayjs(x.endDate) >= tomorrow
         )
-        .filter((x) => x.weekday === tomorrow.format('dddd'))
+        .filter((x) => x.weekday === tomorrow.format('dddd'));
     const thisWeeksClasses = classes?.filter(
         (x) =>
             dayjs(x.startDate) <= today.endOf('week') &&
             dayjs(x.endDate) >= today.startOf('week')
-    )
+    );
     const thisMonthsClasses = classes?.filter(
         (x) =>
             dayjs(x.startDate) <= today.endOf('month') &&
             dayjs(x.endDate) >= today.startOf('month')
-    )
+    );
 
     if (loading) {
         return (
             <div className="flex flex-col justify-center w-full max-w-md p-16">
                 <Loading />
             </div>
-        )
+        );
     }
 
     return (
@@ -167,5 +167,5 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                 )}
             </div>
         </div>
-    )
-}
+    );
+};

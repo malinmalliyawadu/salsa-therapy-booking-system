@@ -1,15 +1,15 @@
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/dist/client/router';
 
 interface HeaderNavLinkProps {
-    href: string
+    href: string;
 }
 
 export const HeaderNavLink: React.FC<HeaderNavLinkProps> = ({
     children,
     href,
 }) => {
-    const router = useRouter()
-    const isSelected = router.pathname === href
+    const router = useRouter();
+    const isSelected = router.pathname === href;
 
     return (
         <a
@@ -22,5 +22,5 @@ export const HeaderNavLink: React.FC<HeaderNavLinkProps> = ({
         >
             {children}
         </a>
-    )
-}
+    );
+};

@@ -1,9 +1,9 @@
 interface Props {
-    name: string
-    label: string
-    type?: 'text' | 'textarea' | 'number' | 'weekday' | 'calendar'
-    setValue: (val: string) => void
-    value?: string
+    name: string;
+    label: string;
+    type?: 'text' | 'textarea' | 'number' | 'weekday' | 'calendar';
+    setValue: (val: string) => void;
+    value?: string;
 }
 
 const weekdays = [
@@ -14,7 +14,7 @@ const weekdays = [
     'Friday',
     'Saturday',
     'Sunday',
-]
+];
 
 export const FormElement: React.FC<Props> = ({
     name,
@@ -75,5 +75,5 @@ export const FormElement: React.FC<Props> = ({
                 />
             )}
         </div>
-    )
-}
+    );
+};

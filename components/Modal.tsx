@@ -1,17 +1,17 @@
-import React, { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { Button } from './Button'
-import { DanceClass } from '../types/DanceClass'
-import { getAuth } from '@firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { StripeForm } from './StripeForm'
+import React, { Fragment, ReactNode, useEffect, useRef, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { Button } from './Button';
+import { DanceClass } from '../types/DanceClass';
+import { getAuth } from '@firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { StripeForm } from './StripeForm';
 
 interface Props {
-    show: boolean
-    onClose: () => void
-    bodyContent: ReactNode
-    footerContent: ReactNode
-    title: ReactNode
+    show: boolean;
+    onClose: () => void;
+    bodyContent: ReactNode;
+    footerContent: ReactNode;
+    title: ReactNode;
 }
 
 export const Modal: React.FC<Props> = ({
@@ -21,17 +21,17 @@ export const Modal: React.FC<Props> = ({
     title,
     footerContent,
 }) => {
-    const [open, setOpen] = useState(show)
-    const cancelButtonRef = useRef(null)
+    const [open, setOpen] = useState(show);
+    const cancelButtonRef = useRef(null);
 
     useEffect(() => {
-        setOpen(show)
-    }, [show])
+        setOpen(show);
+    }, [show]);
 
     const modalClose = () => {
-        setOpen(false)
-        onClose()
-    }
+        setOpen(false);
+        onClose();
+    };
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -94,5 +94,5 @@ export const Modal: React.FC<Props> = ({
                 </div>
             </Dialog>
         </Transition.Root>
-    )
-}
+    );
+};

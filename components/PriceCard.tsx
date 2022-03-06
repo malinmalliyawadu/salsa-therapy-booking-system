@@ -1,19 +1,19 @@
-import { CheckIcon } from '@heroicons/react/outline'
-import { ReactNode } from 'react'
-import { Button } from './Button'
+import { CheckIcon } from '@heroicons/react/outline';
+import { ReactNode } from 'react';
+import { Button } from './Button';
 
 interface Props {
-    name: string
-    description?: string
-    price: number
-    points: string[]
-    callToAction: ReactNode
-    isMostPopular?: boolean
-    headerBg?: string
+    name: string;
+    description?: string;
+    price: number;
+    points: string[];
+    callToAction: ReactNode;
+    isMostPopular?: boolean;
+    headerBg?: string;
 }
 
 interface PointProps {
-    text: string
+    text: string;
 }
 
 const Point: React.FC<PointProps> = ({ text }) => {
@@ -26,8 +26,8 @@ const Point: React.FC<PointProps> = ({ text }) => {
                 {text}
             </span>
         </li>
-    )
-}
+    );
+};
 
 export const PriceCard: React.FC<Props> = ({
     name,
@@ -81,5 +81,5 @@ export const PriceCard: React.FC<Props> = ({
                 <div className="text-center p-8">{callToAction}</div>
             </div>
         </div>
-    )
-}
+    );
+};

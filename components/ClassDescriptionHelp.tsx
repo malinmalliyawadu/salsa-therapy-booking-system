@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
-import React from 'react'
+import { motion } from 'framer-motion';
+import React from 'react';
 
 export const ClassDescriptionHelp = () => {
     return (
@@ -23,5 +23,5 @@ export const ClassDescriptionHelp = () => {
 
             <div className="text-9xl my-12">💃🕺</div>
         </motion.div>
-    )
-}
+    );
+};

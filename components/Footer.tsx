@@ -6,5 +6,5 @@ export const Footer = () => {
                 Privacy Policy
             </a>
         </footer>
-    )
-}
+    );
+};

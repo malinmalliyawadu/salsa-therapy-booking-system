@@ -1,5 +1,5 @@
 export const Loading = () => {
-    const colour = '#4c1d95'
+    const colour = '#4c1d95';
     return (
         <svg
             version="1.1"
@@ -58,5 +58,5 @@ export const Loading = () => {
                 />
             </path>
         </svg>
-    )
-}
+    );
+};

@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import React from 'react'
-import { Footer } from './Footer'
-import { Header } from './Header'
+import Head from 'next/head';
+import React from 'react';
+import { Footer } from './Footer';
+import { Header } from './Header';
 
 export const Layout: React.FC = ({ children }) => {
     return (
@@ -23,5 +23,5 @@ export const Layout: React.FC = ({ children }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

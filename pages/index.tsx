@@ -1,18 +1,18 @@
-import type { NextPage } from 'next'
-import React, { useState } from 'react'
-import { getAuth } from '@firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { ClassTimetable } from '../components/ClassTimetable'
-import { ClassDescription } from '../components/ClassDescription'
-import { useClasses } from '../hooks/useClasses'
-import { ClassDescriptionHelp } from '../components/ClassDescriptionHelp'
-import { DanceClass } from '../types/DanceClass'
-import { AnimatePresence } from 'framer-motion'
+import type { NextPage } from 'next';
+import React, { useState } from 'react';
+import { getAuth } from '@firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { ClassTimetable } from '../components/ClassTimetable';
+import { ClassDescription } from '../components/ClassDescription';
+import { useClasses } from '../hooks/useClasses';
+import { ClassDescriptionHelp } from '../components/ClassDescriptionHelp';
+import { DanceClass } from '../types/DanceClass';
+import { AnimatePresence } from 'framer-motion';
 
 const Home: NextPage = () => {
-    const [user, userLoading, userError] = useAuthState(getAuth())
-    const [selectedClass, setSelectedClass] = useState<DanceClass>()
-    const [classes, classesLoading, classesError] = useClasses()
+    const [user, userLoading, userError] = useAuthState(getAuth());
+    const [selectedClass, setSelectedClass] = useState<DanceClass>();
+    const [classes, classesLoading, classesError] = useClasses();
 
     return (
         <div className="flex flex-col min-h-full justify-between">
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
                 </div>
             </main>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

@@ -1,12 +1,12 @@
-import { LegacyRef } from 'react'
+import { LegacyRef } from 'react';
 
 interface ButtonProps {
-    appearance?: 'primary' | 'secondary'
-    onClick?: () => void
-    ref?: LegacyRef<HTMLButtonElement>
-    type?: 'button' | 'submit' | 'reset'
-    disabled?: boolean
-    className?: string
+    appearance?: 'primary' | 'secondary';
+    onClick?: () => void;
+    ref?: LegacyRef<HTMLButtonElement>;
+    type?: 'button' | 'submit' | 'reset';
+    disabled?: boolean;
+    className?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -42,5 +42,5 @@ export const Button: React.FC<ButtonProps> = ({
         >
             {children}
         </button>
-    )
-}
+    );
+};

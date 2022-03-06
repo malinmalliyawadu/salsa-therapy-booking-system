@@ -1,20 +1,20 @@
-import { signOut } from '@firebase/auth'
+import { signOut } from '@firebase/auth';
 import {
     ArrowLeftIcon,
     ArrowRightIcon,
     CheckCircleIcon,
-} from '@heroicons/react/outline'
-import { getAuth } from 'firebase/auth'
-import { NextPage } from 'next'
-import { useRouter } from 'next/dist/client/router'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { useClasses } from '../../hooks/useClasses'
+} from '@heroicons/react/outline';
+import { getAuth } from 'firebase/auth';
+import { NextPage } from 'next';
+import { useRouter } from 'next/dist/client/router';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useClasses } from '../../hooks/useClasses';
 
 const BookingSuccess: NextPage = () => {
-    const router = useRouter()
-    const [user, userLoading, userError] = useAuthState(getAuth())
-    const [classes, classesLoading, classesError] = useClasses()
-    const danceClass = classes?.find((x) => x.stripeId === router.query['id'])
+    const router = useRouter();
+    const [user, userLoading, userError] = useAuthState(getAuth());
+    const [classes, classesLoading, classesError] = useClasses();
+    const danceClass = classes?.find((x) => x.stripeId === router.query['id']);
 
     return (
         <div className="flex justify-center my-32 flex-row gap-8 max-w-4xl mx-auto">
@@ -72,7 +72,7 @@ const BookingSuccess: NextPage = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default BookingSuccess
+export default BookingSuccess;

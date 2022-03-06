@@ -1,7 +1,7 @@
 interface ButtonLinkProps {
-    appearance?: 'primary' | 'secondary'
-    href: string
-    className?: string
+    appearance?: 'primary' | 'secondary';
+    href: string;
+    className?: string;
 }
 
 export const ButtonLink: React.FC<ButtonLinkProps> = ({
@@ -24,5 +24,5 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
         >
             {children}
         </a>
-    )
-}
+    );
+};

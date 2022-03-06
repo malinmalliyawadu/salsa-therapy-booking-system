@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { NextPage } from 'next';
 
 const Bookings: NextPage = () => {
     return (
@@ -7,7 +7,7 @@ const Bookings: NextPage = () => {
                 Your Bookings
             </h1>
         </div>
-    )
-}
+    );
+};
 
-export default Bookings
+export default Bookings;

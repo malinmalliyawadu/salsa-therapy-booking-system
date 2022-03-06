@@ -5,45 +5,45 @@ import {
     UserGroupIcon,
     XCircleIcon,
     CheckIcon,
-} from '@heroicons/react/outline'
-import React, { useEffect, useState } from 'react'
-import { DanceClass } from '../types/DanceClass'
-import { Button } from './Button'
-import { motion } from 'framer-motion'
-import { getAuth } from 'firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { ButtonLink } from './ButtonLink'
-import { Modal } from './Modal'
-import { useBookings } from '../hooks/useBookings'
-import { StripeForm } from './StripeForm'
+} from '@heroicons/react/outline';
+import React, { useEffect, useState } from 'react';
+import { DanceClass } from '../types/DanceClass';
+import { Button } from './Button';
+import { motion } from 'framer-motion';
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { ButtonLink } from './ButtonLink';
+import { Modal } from './Modal';
+import { useBookings } from '../hooks/useBookings';
+import { StripeForm } from './StripeForm';
 
 interface ClassDescriptionProps {
-    danceClass: DanceClass
-    onClose: () => void
+    danceClass: DanceClass;
+    onClose: () => void;
 }
 
 export const ClassDescription: React.FC<ClassDescriptionProps> = ({
     danceClass,
     onClose,
 }) => {
-    const [user, userLoading, userError] = useAuthState(getAuth())
-    const [showBookModal, setShowBookModal] = useState(false)
-    const [bookings, bookingsLoading, bookingsError] = useBookings()
-    const isBooked = bookings?.some((y) => y.classId == danceClass.id)
-    const [submitLoading, setSubmitLoading] = useState(false)
-    const [price, setPrice] = useState<number>()
+    const [user, userLoading, userError] = useAuthState(getAuth());
+    const [showBookModal, setShowBookModal] = useState(false);
+    const [bookings, bookingsLoading, bookingsError] = useBookings();
+    const isBooked = bookings?.some((y) => y.classId == danceClass.id);
+    const [submitLoading, setSubmitLoading] = useState(false);
+    const [price, setPrice] = useState<number>();
 
     const onBookClassClick = () => {
-        setShowBookModal(true)
-    }
+        setShowBookModal(true);
+    };
 
     useEffect(() => {
         fetch(
             `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${danceClass.stripeId}`
         )
             .then((res) => res.json())
-            .then((x) => setPrice(x.unit_amount / 100))
-    }, [danceClass.id])
+            .then((x) => setPrice(x.unit_amount / 100));
+    }, [danceClass.id]);
 
     return (
         <>
@@ -106,7 +106,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                         <StripeForm
                             productId={danceClass.stripeId ?? ''}
                             onSubmit={() => {
-                                setSubmitLoading(true)
+                                setSubmitLoading(true);
                             }}
                         >
                             <Button
@@ -195,5 +195,5 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                 </div>
             </motion.div>
         </>
-    )
-}
+    );
+};

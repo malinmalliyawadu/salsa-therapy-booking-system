@@ -1,18 +1,18 @@
-import { getAuth } from 'firebase/auth'
-import { ReactNode } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { getAuth } from 'firebase/auth';
+import { ReactNode } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 interface Props {
-    onSubmit: () => void
-    productId: string
-    children: ReactNode
+    onSubmit: () => void;
+    productId: string;
+    children: ReactNode;
 }
 export const StripeForm: React.FC<Props> = ({
     onSubmit,
     productId,
     children,
 }) => {
-    const [user, userLoading, userError] = useAuthState(getAuth())
+    const [user, userLoading, userError] = useAuthState(getAuth());
 
     return (
         <form
@@ -25,5 +25,5 @@ export const StripeForm: React.FC<Props> = ({
             <input name="email" type="hidden" value={user?.email ?? ''} />
             {children}
         </form>
-    )
-}
+    );
+};

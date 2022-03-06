@@ -1,11 +1,11 @@
-import { Booking } from '../types/Booking'
-import { DanceClass } from '../types/DanceClass'
+import { Booking } from '../types/Booking';
+import { DanceClass } from '../types/DanceClass';
 
 interface ClassTimetableRowProps {
-    danceClass: DanceClass
-    booked?: boolean
-    onClick: (danceClass: DanceClass) => void
-    selected?: boolean
+    danceClass: DanceClass;
+    booked?: boolean;
+    onClick: (danceClass: DanceClass) => void;
+    selected?: boolean;
 }
 
 export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
@@ -31,5 +31,5 @@ export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
                 )}
             </div>
         </div>
-    )
-}
+    );
+};

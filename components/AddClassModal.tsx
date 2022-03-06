@@ -1,27 +1,27 @@
-import dayjs from 'dayjs'
-import { ref, getDatabase, set } from 'firebase/database'
-import { useState } from 'react'
-import { useClasses } from '../hooks/useClasses'
-import { Button } from './Button'
-import { FormElement } from './FormElement'
-import { Modal } from './Modal'
+import dayjs from 'dayjs';
+import { ref, getDatabase, set } from 'firebase/database';
+import { useState } from 'react';
+import { useClasses } from '../hooks/useClasses';
+import { Button } from './Button';
+import { FormElement } from './FormElement';
+import { Modal } from './Modal';
 
 interface Props {
-    showAddClassModal: boolean
-    setShowAddClassModal: (show: boolean) => void
-    classId?: number
-    initialState?: FormData
+    showAddClassModal: boolean;
+    setShowAddClassModal: (show: boolean) => void;
+    classId?: number;
+    initialState?: FormData;
 }
 
 interface FormData {
-    name?: string
-    description?: string
-    duration?: number
-    weekday?: string
-    startDate?: Date
-    endDate?: Date
-    maxPeople?: number
-    stripeId?: string
+    name?: string;
+    description?: string;
+    duration?: number;
+    weekday?: string;
+    startDate?: Date;
+    endDate?: Date;
+    maxPeople?: number;
+    stripeId?: string;
 }
 
 export const AddClassModal: React.FC<Props> = ({
@@ -30,24 +30,24 @@ export const AddClassModal: React.FC<Props> = ({
     classId,
     initialState = {},
 }) => {
-    const [formData, setFormData] = useState<FormData>(initialState)
-    const [classes] = useClasses()
+    const [formData, setFormData] = useState<FormData>(initialState);
+    const [classes] = useClasses();
 
     const onSave = () => {
         // max class id used in add class mode
         const maxClassId = Math.max(
             ...(classes?.map((x) => Number(x.id)) || [0])
-        )
+        );
         set(ref(getDatabase(), `classes/${classId || maxClassId + 1}`), {
             ...formData,
             duration: String(formData.duration),
             maxPeople: String(formData.maxPeople),
             startDate: dayjs(formData.startDate).format('YYYY-MM-DD'),
             endDate: dayjs(formData.endDate).format('YYYY-MM-DD'),
-        })
+        });
 
-        setShowAddClassModal(false)
-    }
+        setShowAddClassModal(false);
+    };
 
     return (
         <Modal
@@ -145,5 +145,5 @@ export const AddClassModal: React.FC<Props> = ({
                 </>
             }
         />
-    )
-}
+    );
+};

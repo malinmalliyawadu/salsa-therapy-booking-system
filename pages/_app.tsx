@@ -1,9 +1,10 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import * as firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-import { Layout } from '../components/Layout'
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
+import { Layout } from '../components/Layout';
 
 const clientCredentials = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,10 +15,19 @@ const clientCredentials = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     databaseURL:
         'https://salsa-therapy-booking-system-default-rtdb.asia-southeast1.firebasedatabase.app',
-}
+};
 
 if (!firebase.getApps().length) {
-    firebase.initializeApp(clientCredentials)
+    const app = firebase.initializeApp(clientCredentials);
+
+    if (typeof document !== 'undefined') {
+        initializeAppCheck(app, {
+            provider: new ReCaptchaV3Provider(
+                '6Lc-tCcdAAAAAEdTLe8olt7t12q9jYnjByn4RO37'
+            ),
+            isTokenAutoRefreshEnabled: true,
+        });
+    }
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -25,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Layout>
             <Component {...pageProps} />
         </Layout>
-    )
+    );
 }
 
-export default MyApp
+export default MyApp;

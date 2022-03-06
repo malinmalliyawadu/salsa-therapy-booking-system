@@ -1,11 +1,11 @@
-import { getAuth, User } from 'firebase/auth'
-import { NextPage } from 'next'
-import { useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { Button } from '../components/Button'
-import { ButtonLink } from '../components/ButtonLink'
-import { PriceCard } from '../components/PriceCard'
-import { StripeForm } from '../components/StripeForm'
+import { getAuth, User } from 'firebase/auth';
+import { NextPage } from 'next';
+import { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Button } from '../components/Button';
+import { ButtonLink } from '../components/ButtonLink';
+import { PriceCard } from '../components/PriceCard';
+import { StripeForm } from '../components/StripeForm';
 import {
     CasualClassStudent,
     DameDos,
@@ -16,13 +16,13 @@ import {
     FiveTripPass,
     TenTripPass,
     TenTripPassStudent,
-} from '../constants/stripeProductIds'
+} from '../constants/stripeProductIds';
 
 const StripeCallToAction: React.FC<{
-    productId: string
-    user: User | null | undefined
-    submitLoading: boolean
-    setSubmitLoading: (value: boolean) => void
+    productId: string;
+    user: User | null | undefined;
+    submitLoading: boolean;
+    setSubmitLoading: (value: boolean) => void;
 }> = ({ productId, user, submitLoading, setSubmitLoading }) => {
     return (
         <>
@@ -30,7 +30,7 @@ const StripeCallToAction: React.FC<{
                 <StripeForm
                     productId={productId}
                     onSubmit={() => {
-                        setSubmitLoading(true)
+                        setSubmitLoading(true);
                     }}
                 >
                     <Button
@@ -47,14 +47,14 @@ const StripeCallToAction: React.FC<{
                 </ButtonLink>
             )}
         </>
-    )
-}
+    );
+};
 
 // TODO: Add pricing info to firebase
 
 const Pricing: NextPage = () => {
-    const [submitLoading, setSubmitLoading] = useState(false)
-    const [user, userLoading, userError] = useAuthState(getAuth())
+    const [submitLoading, setSubmitLoading] = useState(false);
+    const [user, userLoading, userError] = useAuthState(getAuth());
 
     return (
         <div className="m-6">
@@ -317,7 +317,7 @@ const Pricing: NextPage = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Pricing
+export default Pricing;

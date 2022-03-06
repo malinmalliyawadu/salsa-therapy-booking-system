@@ -1,14 +1,14 @@
 export interface DanceClass {
-    id: string
-    name: string
-    startDate: Date
-    endDate: Date
-    classStartTime: string
-    duration: string
-    extraInfo: string
-    maxPeople: number
-    description: string
-    price: number
+    id: string;
+    name: string;
+    startDate: Date;
+    endDate: Date;
+    classStartTime: string;
+    duration: string;
+    extraInfo: string;
+    maxPeople: number;
+    description: string;
+    price: number;
     weekday:
         | 'Monday'
         | 'Tuesday'
@@ -16,6 +16,6 @@ export interface DanceClass {
         | 'Thursday'
         | 'Friday'
         | 'Saturday'
-        | 'Sunday'
-    stripeId: string
+        | 'Sunday';
+    stripeId: string;
 }
