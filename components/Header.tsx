@@ -23,7 +23,7 @@ export const Header = () => {
                 <HeaderNavLink href="/pricing">Pricing</HeaderNavLink>
                 <>
                     {user?.displayName ? (
-                        <Menu as="div" className="ml-3 relative">
+                        <Menu as="div" className="ml-2 relative">
                             <div>
                                 <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-purple-600 focus:ring-white">
                                     <span className="sr-only">
@@ -31,7 +31,7 @@ export const Header = () => {
                                     </span>
                                     {user?.photoURL ? (
                                         <img
-                                            className="h-8 w-8 rounded-full"
+                                            className="h-10 w-10 rounded-full"
                                             src={user?.photoURL}
                                             alt=""
                                         />

@@ -63,7 +63,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                         </p>
 
                         <fieldset className="mb-6">
-                            <div>
+                            <div className="mb-8">
                                 <legend className="text-base font-medium text-gray-900">
                                     Dancer type
                                 </legend>
@@ -74,7 +74,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                 </p>
                             </div>
                             <div className="mt-4 space-y-4">
-                                <div className="flex items-center">
+                                <div className="flex items-center hover:bg-gray-200 py-2 px-4 -my-4 -mx-4 rounded-lg">
                                     <input
                                         id="leader"
                                         name="dancerType"
@@ -84,12 +84,12 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                     />
                                     <label
                                         htmlFor="leader"
-                                        className="ml-3 block text-sm font-medium text-gray-700"
+                                        className="ml-3 block text-sm font-medium text-gray-700 w-full"
                                     >
                                         Leader
                                     </label>
                                 </div>
-                                <div className="flex items-center">
+                                <div className="flex items-center hover:bg-gray-200 py-2 px-4 -my-4 -mx-4 rounded-lg">
                                     <input
                                         id="follower"
                                         name="dancerType"
@@ -99,7 +99,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                     />
                                     <label
                                         htmlFor="follower"
-                                        className="ml-3 block text-sm font-medium text-gray-700"
+                                        className="ml-3 block text-sm font-medium text-gray-700 w-full"
                                     >
                                         Follower
                                     </label>
@@ -117,6 +117,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                             </Button>
 
                             <Button
+                                type="button"
                                 appearance="secondary"
                                 onClick={() => setShowBookModal(false)}
                                 disabled={submitLoading}
