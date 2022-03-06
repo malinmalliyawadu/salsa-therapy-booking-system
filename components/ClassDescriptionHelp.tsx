@@ -9,7 +9,7 @@ export const ClassDescriptionHelp = () => {
             exit={{ opacity: 0 }}
             className="p-4 flex-1 rounded-md self-start"
         >
-            <h2 className="font-bold text-6xl mb-2 tracking-tight">
+            <h2 className="text-black font-bold text-6xl mb-2 tracking-tight">
                 Hi there 👋
             </h2>
             <p className="text-lg">

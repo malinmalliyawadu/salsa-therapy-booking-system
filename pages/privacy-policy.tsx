@@ -25,7 +25,7 @@ const Ul: React.FC = ({ children }) => {
 const PrivacyPolicy: NextPage = () => {
     return (
         <div className="m-6">
-            <h1 className="font-bold text-6xl mb-2 tracking-tight">
+            <h1 className="font-bold text-black text-7xl mb-8 tracking-tighter text-center">
                 Privacy Policy
             </h1>
             <p className="italic my-4">Last updated: January 25, 2022</p>

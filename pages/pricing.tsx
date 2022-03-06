@@ -56,11 +56,13 @@ const Pricing: NextPage = () => {
 
     return (
         <div className="m-6">
-            <h1 className="font-bold text-6xl mb-2 tracking-tight">Pricing</h1>
+            <h1 className="font-bold text-black text-7xl mb-8 tracking-tighter text-center">
+                Pricing and packages
+            </h1>
 
             <div className="max-w-full mx-auto my-12">
-                <h2 className="font-bold text-3xl mb-2 tracking-tight">
-                    Term packages:
+                <h2 className="font-bold text-4xl mb-2 tracking-tight">
+                    Term packages
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                     <PriceCard
@@ -153,8 +155,8 @@ const Pricing: NextPage = () => {
                     />
                 </div>
 
-                <h2 className="font-bold text-3xl mb-2 tracking-tight">
-                    Casual pricing:
+                <h2 className="font-bold text-4xl mb-2 tracking-tight">
+                    Casual pricing
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                     <PriceCard
@@ -227,8 +229,8 @@ const Pricing: NextPage = () => {
                     />
                 </div>
 
-                <h2 className="font-bold text-3xl mb-2 tracking-tight">
-                    Student pricing:
+                <h2 className="font-bold text-4xl mb-2 tracking-tight">
+                    Student pricing
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                     <PriceCard

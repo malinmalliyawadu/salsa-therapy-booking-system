@@ -1,13 +1,12 @@
-import { signOut } from '@firebase/auth';
-import {
-    ArrowLeftIcon,
-    ArrowRightIcon,
-    CheckCircleIcon,
-} from '@heroicons/react/outline';
+import { ArrowLeftIcon, CheckCircleIcon } from '@heroicons/react/outline';
+import dayjs from 'dayjs';
 import { getAuth } from 'firebase/auth';
+import { set, ref, getDatabase } from 'firebase/database';
 import { NextPage } from 'next';
 import { useRouter } from 'next/dist/client/router';
+import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useBookings } from '../../hooks/useBookings';
 import { useClasses } from '../../hooks/useClasses';
 
 const BookingSuccess: NextPage = () => {
@@ -15,6 +14,15 @@ const BookingSuccess: NextPage = () => {
     const [user, userLoading, userError] = useAuthState(getAuth());
     const [classes, classesLoading, classesError] = useClasses();
     const danceClass = classes?.find((x) => x.stripeId === router.query['id']);
+    const dancerType = router.query['dancerType'] || '';
+
+    useEffect(() => {
+        if (danceClass) {
+            set(ref(getDatabase(), `bookings/${user?.uid}/${danceClass?.id}`), {
+                type: dancerType,
+            });
+        }
+    }, [danceClass, dancerType]);
 
     return (
         <div className="flex justify-center my-32 flex-row gap-8 max-w-4xl mx-auto">

@@ -40,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         typeof window !== 'undefined' &&
         router.pathname !== window.location.pathname
     ) {
+        console.log(router.pathname, window.location.pathname);
         router.push(window.location.href);
     }
 

@@ -10,23 +10,23 @@ export const useBookings = (): [
     boolean,
     Error | undefined
 ] => {
-    const [snapshots, loading, error] = useList(ref(getDatabase(), 'bookings'));
-    const [bookings, setBookings] = useState<Booking[]>();
     const [user, userLoading, userError] = useAuthState(getAuth());
+    const [snapshots, loading, error] = useList(
+        ref(getDatabase(), `bookings/${user?.uid}`)
+    );
+    const [bookings, setBookings] = useState<Booking[]>();
 
     useEffect(() => {
         if (snapshots && user) {
             setBookings(
-                snapshots
-                    .map((x) => {
-                        const rawData = x.val();
+                snapshots.map((x) => {
+                    const rawData = x.val();
 
-                        return {
-                            ...rawData,
-                            id: x.key,
-                        } as Booking;
-                    })
-                    .filter((x) => x.userId === user.uid)
+                    return {
+                        ...rawData,
+                        classId: x.key,
+                    } as Booking;
+                })
             );
         }
     }, [snapshots, user]);

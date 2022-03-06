@@ -45,7 +45,7 @@ const Login: NextPage = () => {
                   }
                 `}
             </style>
-            <h1 className="text-center text-4xl font-bold mb-6">
+            <h1 className="font-bold text-6xl mb-6 tracking-tighter text-center">
                 Login to book a class
             </h1>
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={getAuth()} />

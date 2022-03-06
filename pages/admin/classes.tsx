@@ -11,7 +11,7 @@ import { Modal } from '../../components/Modal';
 import { useClasses } from '../../hooks/useClasses';
 
 const TH: React.FC = ({ children }) => (
-    <th className="align-bottom py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase">
+    <th className="align-bottom py-3 px-6 text-xs font-medium text-left text-white uppercase">
         {children}
     </th>
 );
@@ -25,7 +25,7 @@ const TD: React.FC<{ className?: string }> = ({ children, className }) => (
 );
 
 const Classes: NextPage = () => {
-    const [classes, loading, error] = useClasses();
+    const [classes, loading] = useClasses();
     const [showAddClassModal, setShowAddClassModal] = useState(false);
     const [editClassModalClassId, setEditClassModalClassId] =
         useState<number>();
@@ -51,35 +51,29 @@ const Classes: NextPage = () => {
                     <PlusIcon className="h-4 w-4 inline-block" /> Add class
                 </Button>
             </div>
-            <h1 className="font-bold text-6xl mb-8 tracking-tight">
+            <h1 className="font-bold text-black text-7xl mb-8 tracking-tighter">
                 Manage Classes
             </h1>
 
-            {loading && (
-                <div className="flex flex-col justify-center w-full max-w-md p-16 m-auto">
-                    <Loading />
-                </div>
-            )}
+            <div className="flex flex-col">
+                <div className="overflow-x-auto shadow-xl sm:rounded-xl">
+                    <div className="inline-block min-w-full align-middle">
+                        <div className="overflow-hidden ">
+                            <table className="min-w-full divide-y divide-gray-200 table-fixed">
+                                <thead className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-800">
+                                    <tr>
+                                        <TH>Name</TH>
+                                        <TH>Description</TH>
+                                        <TH>Duration</TH>
+                                        <TH>Weekday</TH>
+                                        <TH>Start Date</TH>
+                                        <TH>End Date</TH>
+                                        <TH>Max People</TH>
+                                        <TH>Actions</TH>
+                                    </tr>
+                                </thead>
 
-            {(classes?.length || 0) > 0 && (
-                <div className="flex flex-col">
-                    <div className="overflow-x-auto shadow-md sm:rounded-lg">
-                        <div className="inline-block min-w-full align-middle">
-                            <div className="overflow-hidden ">
-                                <table className="min-w-full divide-y divide-gray-200 table-fixed">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                            <TH>Name</TH>
-                                            <TH>Description</TH>
-                                            <TH>Duration</TH>
-                                            <TH>Weekday</TH>
-                                            <TH>Start Date</TH>
-                                            <TH>End Date</TH>
-                                            <TH>Max People</TH>
-                                            <TH>Actions</TH>
-                                        </tr>
-                                    </thead>
-
+                                {(classes?.length || 0) > 0 && (
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {classes?.map((x) => (
                                             <tr className="hover:bg-gray-100">
@@ -182,10 +176,16 @@ const Classes: NextPage = () => {
                                             </tr>
                                         ))}
                                     </tbody>
-                                </table>
-                            </div>
+                                )}
+                            </table>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {loading && (
+                <div className="flex flex-col justify-center w-full max-w-md p-16 m-auto">
+                    <Loading />
                 </div>
             )}
         </div>
