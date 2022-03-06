@@ -4,12 +4,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 interface Props {
     onSubmit: () => void;
-    productId: string;
+    priceId: string;
     children: ReactNode;
 }
 export const StripeForm: React.FC<Props> = ({
     onSubmit,
-    productId,
+    priceId,
     children,
 }) => {
     const [user, userLoading, userError] = useAuthState(getAuth());
@@ -21,7 +21,7 @@ export const StripeForm: React.FC<Props> = ({
             action="https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/create-checkout-session"
             onSubmit={onSubmit}
         >
-            <input name="productId" type="hidden" value={productId} />
+            <input name="priceId" type="hidden" value={priceId} />
             <input name="email" type="hidden" value={user?.email ?? ''} />
             {children}
         </form>

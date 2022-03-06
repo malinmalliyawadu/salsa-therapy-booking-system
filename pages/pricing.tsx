@@ -16,19 +16,19 @@ import {
     FiveTripPass,
     TenTripPass,
     TenTripPassStudent,
-} from '../constants/stripeProductIds';
+} from '../constants/stripePriceIds';
 
 const StripeCallToAction: React.FC<{
-    productId: string;
+    priceId: string;
     user: User | null | undefined;
     submitLoading: boolean;
     setSubmitLoading: (value: boolean) => void;
-}> = ({ productId, user, submitLoading, setSubmitLoading }) => {
+}> = ({ priceId, user, submitLoading, setSubmitLoading }) => {
     return (
         <>
             {user ? (
                 <StripeForm
-                    productId={productId}
+                    priceId={priceId}
                     onSubmit={() => {
                         setSubmitLoading(true);
                     }}
@@ -49,8 +49,6 @@ const StripeCallToAction: React.FC<{
         </>
     );
 };
-
-// TODO: Add pricing info to firebase
 
 const Pricing: NextPage = () => {
     const [submitLoading, setSubmitLoading] = useState(false);
@@ -79,7 +77,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={DameUna}
+                                priceId={DameUna}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -100,7 +98,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={DameDos}
+                                priceId={DameDos}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -122,7 +120,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={DameTres}
+                                priceId={DameTres}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -146,7 +144,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={DileQueSi}
+                                priceId={DileQueSi}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -183,7 +181,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={FiveTripPass}
+                                priceId={FiveTripPass}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -200,7 +198,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={TenTripPass}
+                                priceId={TenTripPass}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -243,7 +241,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={CasualClassStudent}
+                                priceId={CasualClassStudent}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -261,7 +259,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={TenTripPassStudent}
+                                priceId={TenTripPassStudent}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}
@@ -281,7 +279,7 @@ const Pricing: NextPage = () => {
                         ]}
                         callToAction={
                             <StripeCallToAction
-                                productId={DameDosStudent}
+                                priceId={DameDosStudent}
                                 user={user}
                                 submitLoading={submitLoading}
                                 setSubmitLoading={setSubmitLoading}

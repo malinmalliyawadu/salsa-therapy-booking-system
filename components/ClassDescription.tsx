@@ -104,7 +104,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                 footerContent={
                     <>
                         <StripeForm
-                            productId={danceClass.stripeId ?? ''}
+                            priceId={danceClass.stripeId ?? ''}
                             onSubmit={() => {
                                 setSubmitLoading(true);
                             }}
