@@ -185,6 +185,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                     <Button onClick={onBookClassClick}>
                                         Book class
                                     </Button>
+                                    
                                 ) : (
                                     <ButtonLink href="/login">
                                         Book class
