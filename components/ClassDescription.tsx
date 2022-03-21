@@ -145,8 +145,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                 <div className="p-4 bg-gray-50">
                     <div className="flex gap-2 items-center">
                         <CalendarIcon className="h-4 w-4" />
-                        {danceClass.weekday} {danceClass.classStartTime} -{' '}
-                        {danceClass.classStartTime}
+                        {danceClass.weekday} {danceClass.classStartTime}
                     </div>
                     <div className="flex gap-2 items-center">
                         <LocationMarkerIcon className="h-4 w-4" />
@@ -182,14 +181,29 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                         ) : (
                             <>
                                 {user ? (
-                                    <Button onClick={onBookClassClick}>
-                                        Book class
-                                    </Button>
-                                    
+                                    <div className="flex gap-2">
+                                        <ButtonLink
+                                            appearance="secondary"
+                                            href="/pricing"
+                                        >
+                                            Book term
+                                        </ButtonLink>
+                                        <Button onClick={onBookClassClick}>
+                                            Book class
+                                        </Button>
+                                    </div>
                                 ) : (
-                                    <ButtonLink href="/login">
-                                        Book class
-                                    </ButtonLink>
+                                    <div className="flex gap-2">
+                                        <ButtonLink
+                                            appearance="secondary"
+                                            href="/login"
+                                        >
+                                            Book term
+                                        </ButtonLink>
+                                        <ButtonLink href="/login">
+                                            Book class
+                                        </ButtonLink>
+                                    </div>
                                 )}
                             </>
                         )}
