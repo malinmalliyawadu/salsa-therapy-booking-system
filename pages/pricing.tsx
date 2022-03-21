@@ -67,8 +67,8 @@ const Pricing: NextPage = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                     <PriceCard
                         name={'Dáme Una'}
-                        description={'$18 per week'}
-                        price={180}
+                        description={'$18.5 per week'}
+                        price={185}
                         headerBg="bg-green-300"
                         points={[
                             'One class per week',
@@ -92,6 +92,7 @@ const Pricing: NextPage = () => {
                         description={'$27.5 per week'}
                         price={275}
                         headerBg="bg-blue-300"
+                        isMostPopular={true}
                         points={[
                             'Two classes per week',
                             'Any classes, style and level',
@@ -128,7 +129,6 @@ const Pricing: NextPage = () => {
                                 setSubmitLoading={setSubmitLoading}
                             />
                         }
-                        isMostPopular={true}
                     />
 
                     <PriceCard
@@ -191,24 +191,7 @@ const Pricing: NextPage = () => {
                         }
                     />
 
-                    <PriceCard
-                        name={'10 Trip Pass'}
-                        price={138}
-                        points={[
-                            'Choose any style and any level',
-                            'Valid for 3 months from date of purchase',
-                        ]}
-                        callToAction={
-                            <StripeCallToAction
-                                priceId={TenTripPass}
-                                user={user}
-                                submitLoading={submitLoading}
-                                setSubmitLoading={setSubmitLoading}
-                            />
-                        }
-                    />
-
-                    <PriceCard
+                    {/* <PriceCard
                         name={'Private classes'}
                         price={45}
                         points={[
@@ -226,7 +209,7 @@ const Pricing: NextPage = () => {
                                 ENQUIRE
                             </ButtonLink>
                         }
-                    />
+                    /> */}
                 </div>
 
                 <h2 className="font-bold text-4xl mb-2 tracking-tight">
@@ -236,10 +219,11 @@ const Pricing: NextPage = () => {
                     <PriceCard
                         name={'Single class'}
                         description={'Student special'}
-                        price={15}
+                        price={13.8}
                         points={[
                             'Choose any style and any level',
                             'Great Flexibility',
+                            'With Student ID'
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -252,12 +236,13 @@ const Pricing: NextPage = () => {
                     />
 
                     <PriceCard
-                        name={'10 Trip pass'}
+                        name={'5 Trip pass'}
                         description={'Student Special'}
-                        price={138}
+                        price={69}
                         points={[
                             'Choose any style and any level',
                             'Valid for 3 months from date of purchase',
+                            'With Student ID'
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -272,12 +257,13 @@ const Pricing: NextPage = () => {
                     <PriceCard
                         name={'Dáme Dos'}
                         description={'Student Special'}
-                        price={160}
+                        price={230}
                         points={[
                             'Two classes per week',
-                            'Any classes, style and level',
                             '1 FREE Salsa Practica passes',
                             'Valid for 10 weeks!',
+                            'With Student ID',
+
                         ]}
                         callToAction={
                             <StripeCallToAction
