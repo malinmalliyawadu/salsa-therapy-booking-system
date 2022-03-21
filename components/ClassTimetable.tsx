@@ -103,7 +103,6 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                                 )}
                                 danceClass={x}
                                 onClick={onRowClick}
-                                selected={x.id === selectedClassId}
                             />
                         ))}
                     </>
@@ -122,7 +121,6 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                                 )}
                                 danceClass={x}
                                 onClick={onRowClick}
-                                selected={x.id === selectedClassId}
                             />
                         ))}
                     </>
@@ -141,7 +139,6 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                                 )}
                                 danceClass={x}
                                 onClick={onRowClick}
-                                selected={x.id === selectedClassId}
                             />
                         ))}
                     </>
@@ -160,7 +157,6 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                                 )}
                                 danceClass={x}
                                 onClick={onRowClick}
-                                selected={x.id === selectedClassId}
                             />
                         ))}
                     </>

@@ -18,6 +18,7 @@ interface FormData {
     description?: string;
     duration?: number;
     weekday?: string;
+    classStartTime?: string;
     startDate?: Date;
     endDate?: Date;
     maxPeople?: number;
@@ -90,6 +91,14 @@ export const AddClassModal: React.FC<Props> = ({
                             setFormData({ ...formData, weekday: val })
                         }
                         value={formData.weekday}
+                    />
+                    <FormElement
+                        name="classStartTime"
+                        label="Start Time"
+                        setValue={(val) =>
+                            setFormData({ ...formData, classStartTime: val })
+                        }
+                        value={formData.classStartTime}
                     />
                     <FormElement
                         name="startDate"

@@ -66,6 +66,7 @@ const Classes: NextPage = () => {
                                         <TH>Description</TH>
                                         <TH>Duration</TH>
                                         <TH>Weekday</TH>
+                                        <TH>Start Time</TH>
                                         <TH>Start Date</TH>
                                         <TH>End Date</TH>
                                         <TH>Max People</TH>
@@ -81,6 +82,7 @@ const Classes: NextPage = () => {
                                                 <TD>{x.description}</TD>
                                                 <TD>{x.duration}</TD>
                                                 <TD>{x.weekday}</TD>
+                                                <TD>{x.classStartTime}</TD>
                                                 <TD>
                                                     {dayjs(x.startDate).format(
                                                         'D MMMM YYYY'
