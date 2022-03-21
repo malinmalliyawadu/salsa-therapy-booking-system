@@ -5,21 +5,17 @@ interface ClassTimetableRowProps {
     danceClass: DanceClass;
     booked?: boolean;
     onClick: (danceClass: DanceClass) => void;
-    selected?: boolean;
 }
 
 export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
     danceClass,
     booked,
     onClick,
-    selected,
 }) => {
     return (
         <div
             onClick={() => onClick(danceClass)}
-            className={`p-4 grid grid-cols-3 border-b hover:bg-yellow-50 cursor-pointer ${
-                selected && 'bg-yellow-400'
-            }`}
+            className={`p-4 grid grid-cols-3 border-b hover:bg-yellow-50 cursor-pointer`}
         >
             <div className="w-24">{danceClass.classStartTime}</div>
             <div>{danceClass.name}</div>
