@@ -2,9 +2,9 @@ import {
     CalendarIcon,
     LocationMarkerIcon,
     ExternalLinkIcon,
-    UserGroupIcon,
     XCircleIcon,
     CheckIcon,
+    ClockIcon,
 } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
 import { DanceClass } from '../types/DanceClass';
@@ -36,7 +36,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
     const onBookClassClick = () => {
         setShowBookModal(true);
     };
-
+   
     useEffect(() => {
         fetch(
             `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${danceClass.stripeId}`
@@ -160,8 +160,9 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                         </a>
                     </div>
                     <div className="flex gap-2 items-center">
-                        <UserGroupIcon className="h-4 w-4" />
-                        {danceClass.maxPeople} spaces available
+                        <ClockIcon className="h-4 w-4" />
+                        Duration: 
+                        {danceClass.duration} mins
                     </div>
                 </div>
                 <div className="p-4 ">
