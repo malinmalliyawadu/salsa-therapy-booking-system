@@ -36,7 +36,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
     const onBookClassClick = () => {
         setShowBookModal(true);
     };
-   
+
     useEffect(() => {
         fetch(
             `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${danceClass.stripeId}`
@@ -161,7 +161,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                     </div>
                     <div className="flex gap-2 items-center">
                         <ClockIcon className="h-4 w-4" />
-                        Duration: 
+                        Duration:{' '}
                         {danceClass.duration} mins
                     </div>
                 </div>
