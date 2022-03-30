@@ -96,7 +96,10 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     }
 
     return (
-        <div className="flex flex-col justify-center gap-6 flex-shrink-1 flex-grow-0 w-full max-w-md">
+        <div className="flex flex-col justify-center gap-4 flex-shrink-1 flex-grow-0 w-full max-w-md">
+            <h2 className="font-bold text-4xl mt-4 tracking-tight text-purple-700">
+                Class Timetable
+            </h2>
             <div className="border border-purple-300 w-full filter drop-shadow-lg shadow-lg bg-white flex-1 rounded-md self-start overflow-hidden">
                 {!todaysClasses?.length &&
                     !tomorrowsClasses?.length &&
