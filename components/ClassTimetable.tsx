@@ -57,6 +57,10 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
             dayjs(x.startDate) <= today.endOf('month') &&
             dayjs(x.endDate) >= today.startOf('month')
     );
+    // Note: this might have some issues around dec/jan
+    const laterThisYearClasses = classes?.filter((x) =>
+        dayjs(x.startDate) <= today.endOf('year') &&
+        dayjs(x.endDate) <= today.endOf('year'))
 
     if (loading) {
         return (
@@ -150,6 +154,24 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                             Later this month
                         </ClassTimetableRowHeader>
                         {thisMonthsClasses?.map((x) => (
+                            <ClassTimetableRow
+                                key={x.id}
+                                booked={bookings?.some(
+                                    (y) => y.classId == x.id
+                                )}
+                                danceClass={x}
+                                onClick={onRowClick}
+                            />
+                        ))}
+                    </>
+                )}
+
+                {(laterThisYearClasses?.length ?? 0) > 0 && (
+                    <>
+                        <ClassTimetableRowHeader>
+                            Later this year
+                        </ClassTimetableRowHeader>
+                        {laterThisYearClasses?.map((x) => (
                             <ClassTimetableRow
                                 key={x.id}
                                 booked={bookings?.some(

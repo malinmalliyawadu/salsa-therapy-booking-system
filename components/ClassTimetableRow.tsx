@@ -17,7 +17,8 @@ export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
             onClick={() => onClick(danceClass)}
             className={`p-4 grid grid-cols-3 border-b hover:bg-yellow-50 cursor-pointer`}
         >
-            <div className="w-24">{danceClass.classStartTime}</div>
+
+            <div className="w-24 flex flex-col"><div>{danceClass.weekday}</div><div>{danceClass.classStartTime}</div></div>
             <div>{danceClass.name}</div>
             <div className="text-right">
                 {booked && (

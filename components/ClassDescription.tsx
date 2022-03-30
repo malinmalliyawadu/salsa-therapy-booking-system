@@ -163,8 +163,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                     </div>
                     <div className="flex gap-2 items-center">
                         <ClockIcon className="h-4 w-4" />
-                        Duration:
-                        {danceClass.duration} mins
+                        Duration: {danceClass.duration} mins
                     </div>
                 </div>
                 <div className="p-4 ">
