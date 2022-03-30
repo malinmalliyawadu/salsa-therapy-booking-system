@@ -16,6 +16,8 @@ import { ButtonLink } from './ButtonLink';
 import { Modal } from './Modal';
 import { useBookings } from '../hooks/useBookings';
 import { StripeForm } from './StripeForm';
+import { Loading } from './Loading';
+import { Skeleton } from './Skeleton';
 
 interface ClassDescriptionProps {
     danceClass: DanceClass;
@@ -36,7 +38,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
     const onBookClassClick = () => {
         setShowBookModal(true);
     };
-   
+
     useEffect(() => {
         fetch(
             `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${danceClass.stripeId}`
@@ -161,7 +163,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                     </div>
                     <div className="flex gap-2 items-center">
                         <ClockIcon className="h-4 w-4" />
-                        Duration: 
+                        Duration:
                         {danceClass.duration} mins
                     </div>
                 </div>
@@ -173,7 +175,9 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                 <div className="p-4 bg-gray-50">
                     <h3 className="text-lg font-bold">Price</h3>
                     <div className="flex justify-between items-end">
-                        <div className="text-5xl">${price}</div>
+                        <div className="text-5xl">
+                            {price ? <>${price}</> : <Skeleton />}
+                        </div>
                         {isBooked ? (
                             <div className="text-green-600 bg-green-50 py-2 px-4 rounded-3xl text-xl border border-green-300">
                                 <CheckIcon className="h-6 w-6 inline-block" />{' '}

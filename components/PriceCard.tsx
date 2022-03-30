@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { CheckIcon } from '@heroicons/react/outline';
 import { ReactNode } from 'react';
 import { Button } from './Button';
+import { Skeleton } from './Skeleton';
 
 interface Props {
     name: string;
@@ -51,11 +52,11 @@ export const PriceCard: React.FC<Props> = ({
             .then((x) => setPrice(x.unit_amount / 100));
     }, [priceId]);
 
-
     return (
         <div
-            className={`my-8 relative transition-all transform hover:scale-105 border border-gray-200 ${isMostPopular ? 'rounded-b-lg' : 'rounded-lg'
-                } mx-2 shadow-md self-stretch`}
+            className={`my-8 relative transition-all transform hover:scale-105 border border-gray-200 ${
+                isMostPopular ? 'rounded-b-lg' : 'rounded-lg'
+            } mx-2 shadow-md self-stretch`}
         >
             {isMostPopular && (
                 <div className="text-sm leading-none rounded-t-lg bg-pink-500 text-white font-semibold uppercase py-4 text-center tracking-wide -mt-11">
@@ -63,8 +64,9 @@ export const PriceCard: React.FC<Props> = ({
                 </div>
             )}
             <div
-                className={`h-full flex flex-col bg-white text-black rounded-lg border-gray-100 shadow-lg overflow-hidden ${isMostPopular ? 'rounded-t-none  bg-pink-50' : ''
-                    }`}
+                className={`h-full flex flex-col bg-white text-black rounded-lg border-gray-100 shadow-lg overflow-hidden ${
+                    isMostPopular ? 'rounded-t-none  bg-pink-50' : ''
+                }`}
             >
                 <div className="block text-left text-sm sm:text-md max-w-sm mx-auto mt-2 text-black px-8 lg:px-6">
                     <h1
@@ -73,11 +75,12 @@ export const PriceCard: React.FC<Props> = ({
                         {name}
                     </h1>
                     <h2 className="text-6xl text-purple-500 text-center font-bold">
-                        ${price}
+                        {price ? <>${price}</> : <Skeleton />}
                     </h2>
                     {(description || !noDescription) && (
                         <div className="text-lg text-center text-purple-900 my-4 bg-purple-50 rounded-3xl">
-                            {description || `$${price! / 10} per week`}
+                            {description ||
+                                (price && `$${price / 10} per week`)}
                         </div>
                     )}
                 </div>
