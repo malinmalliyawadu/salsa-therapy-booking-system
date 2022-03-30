@@ -1,3 +1,4 @@
+import { RefreshIcon } from '@heroicons/react/outline';
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useBookings } from '../hooks/useBookings';
@@ -17,9 +18,13 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     onRowClick,
     selectedClass,
 }) => {
+    const defaultMaxClassesToShow = 10;
     const [classes, loading, error] = useClasses();
     const [bookings, bookingsLoading, bookingsError] = useBookings();
     const [selectedClassId, setSelectedClassId] = useState<string>();
+    const [maxClassesToShow, setMaxClassesToShow] = useState(
+        defaultMaxClassesToShow
+    );
 
     useEffect(() => {
         setSelectedClassId(selectedClass?.id ?? undefined);
@@ -52,15 +57,35 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
             dayjs(x.startDate) <= today.endOf('week') &&
             dayjs(x.endDate) >= today.startOf('week')
     );
-    const thisMonthsClasses = classes?.filter(
-        (x) =>
-            dayjs(x.startDate) <= today.endOf('month') &&
-            dayjs(x.endDate) >= today.startOf('month')
+
+    const alwaysShownClassesCount =
+        (todaysClasses?.length || 0) +
+        (tomorrowsClasses?.length || 0) +
+        (thisWeeksClasses?.length || 0);
+    const thisMonthsClassesCount = Math.max(
+        0,
+        maxClassesToShow - alwaysShownClassesCount
     );
+    const laterThisYearClassesCount = Math.max(
+        0,
+        maxClassesToShow - (alwaysShownClassesCount + thisMonthsClassesCount)
+    );
+
+    const thisMonthsClasses = classes
+        ?.filter(
+            (x) =>
+                dayjs(x.startDate) <= today.endOf('month') &&
+                dayjs(x.endDate) >= today.startOf('month')
+        )
+        .slice(0, thisMonthsClassesCount);
     // Note: this might have some issues around dec/jan
-    const laterThisYearClasses = classes?.filter((x) =>
-        dayjs(x.startDate) <= today.endOf('year') &&
-        dayjs(x.endDate) <= today.endOf('year'))
+    const laterThisYearClasses = classes
+        ?.filter(
+            (x) =>
+                dayjs(x.startDate) <= today.endOf('year') &&
+                dayjs(x.endDate) <= today.endOf('year')
+        )
+        .slice(0, laterThisYearClassesCount);
 
     if (loading) {
         return (
@@ -184,6 +209,12 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                     </>
                 )}
             </div>
+            {maxClassesToShow === defaultMaxClassesToShow && (
+                <Button onClick={() => setMaxClassesToShow(40)}>
+                    <RefreshIcon className="w-6 h-6 mr-2 inline-block" /> Load
+                    all upcoming classes
+                </Button>
+            )}
         </div>
     );
 };
