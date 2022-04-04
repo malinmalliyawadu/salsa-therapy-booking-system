@@ -18,7 +18,7 @@ export const Layout: React.FC = ({ children }) => {
             <div className="font-inter antialiased bg-gray-100 text-gray-600 min-h-screen flex flex-col justify-between">
                 <Header />
                 <div className="flex-1 flex flex-col justify-between">
-                    <div className="container mx-auto">{children}</div>
+                    <div className="lg:container mx-auto">{children}</div>
                     <Footer />
                 </div>
             </div>
