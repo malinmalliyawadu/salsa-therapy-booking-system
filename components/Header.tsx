@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { HeaderNavLink } from './HeaderNavLink';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import { useAdmins } from '../hooks/useAdmins';
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
@@ -11,14 +12,26 @@ function classNames(...classes: string[]) {
 
 export const Header = () => {
     const [user, loading, error] = useAuthState(getAuth());
+    const [adminIds, adminIdsLoading, adminIdsError] = useAdmins();
+    const showAdminLink = adminIds?.find((x) => x === user?.uid);
 
     return (
         <header className="z-10 shadow-sm sticky py-6 px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
             <a href="/" className="transition-all transform hover:scale-125">
-                <img src="/logo.png" width="60" height="60" className="rounded-full"/>
+                <img
+                    src="/logo.png"
+                    width="60"
+                    height="60"
+                    className="rounded-full"
+                />
             </a>
 
             <nav className="flex gap-6 items-center">
+                {showAdminLink && (
+                    <HeaderNavLink href="/admin/classes">
+                        Manage classes
+                    </HeaderNavLink>
+                )}
                 <HeaderNavLink href="/">Upcoming Classes</HeaderNavLink>
                 <HeaderNavLink href="/pricing">Pricing</HeaderNavLink>
                 <>

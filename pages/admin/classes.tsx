@@ -1,13 +1,17 @@
 import { getDatabase } from '@firebase/database';
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/outline';
 import dayjs from 'dayjs';
+import { getAuth } from 'firebase/auth';
 import { ref, remove } from 'firebase/database';
 import { NextPage } from 'next';
-import { useState } from 'react';
+import { useRouter } from 'next/dist/client/router';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { AddClassModal } from '../../components/AddClassModal';
 import { Button } from '../../components/Button';
 import { Loading } from '../../components/Loading';
 import { Modal } from '../../components/Modal';
+import { useAdmins } from '../../hooks/useAdmins';
 import { useClasses } from '../../hooks/useClasses';
 
 const TH: React.FC = ({ children }) => (
@@ -31,6 +35,30 @@ const Classes: NextPage = () => {
         useState<number>();
     const [deleteClassModalClassId, setDeleteClassModalClassId] =
         useState<number>();
+    const [user, userLoading, userError] = useAuthState(getAuth());
+    const [adminIds, adminIdsLoading, adminIdsHasLoaded, adminIdsError] =
+        useAdmins();
+    const router = useRouter();
+    const [isAdmin, setIsAdmin] = useState<boolean>();
+
+    useEffect(() => {
+        if (!userLoading && !adminIdsLoading) {
+            // not logged in user
+            if (!user) {
+                setIsAdmin(false);
+            }
+            // logged in
+            else {
+                if (adminIdsHasLoaded) {
+                    setIsAdmin(adminIds?.some((x) => x === user?.uid));
+                }
+            }
+        }
+    }, [adminIds, user, userLoading, adminIdsLoading, adminIdsHasLoaded]);
+
+    if (process.browser && isAdmin === false) {
+        router.push('/');
+    }
 
     const onAddClassModal = () => {
         setShowAddClassModal(true);
@@ -74,7 +102,7 @@ const Classes: NextPage = () => {
                                     </tr>
                                 </thead>
 
-                                {(classes?.length || 0) > 0 && (
+                                {isAdmin && (classes?.length || 0) > 0 && (
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {classes?.map((x) => (
                                             <tr className="hover:bg-gray-100">
@@ -185,7 +213,7 @@ const Classes: NextPage = () => {
                 </div>
             </div>
 
-            {loading && (
+            {isAdmin === undefined && (
                 <div className="flex flex-col justify-center w-full max-w-md p-16 m-auto">
                     <Loading />
                 </div>
