@@ -1,5 +1,5 @@
 import { RefreshIcon } from '@heroicons/react/outline';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useBookings } from '../hooks/useBookings';
 import { useClasses } from '../hooks/useClasses';
@@ -14,10 +14,16 @@ interface ClassTimetableProps {
     selectedClass?: DanceClass;
 }
 
+interface DanceClassDate extends DanceClass {
+    date: Dayjs;
+}
+
 export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     onRowClick,
     selectedClass,
 }) => {
+    const today = dayjs();
+    const tomorrow = dayjs().add(1, 'day');
     const defaultMaxClassesToShow = 10;
     const [classes, loading, error] = useClasses();
     const [bookings, bookingsLoading, bookingsError] = useBookings();
@@ -25,12 +31,8 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     const [maxClassesToShow, setMaxClassesToShow] = useState(
         defaultMaxClassesToShow
     );
-
-    useEffect(() => {
-        setSelectedClassId(selectedClass?.id ?? undefined);
-    }, [selectedClass]);
-
-    const weekdays = [
+    const [allClasses, setAllClasses] = useState<DanceClassDate[]>();
+    const days = [
         'Sunday',
         'Monday',
         'Tuesday',
@@ -39,23 +41,40 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
         'Friday',
         'Saturday',
     ];
-    const today = dayjs();
-    const tomorrow = dayjs().add(1, 'day');
-    const todaysClasses = classes
-        ?.filter(
-            (x) => dayjs(x.startDate) <= today && dayjs(x.endDate) >= today
-        )
-        .filter((x) => x.weekday === today.format('dddd'));
-    const tomorrowsClasses = classes
-        ?.filter(
-            (x) =>
-                dayjs(x.startDate) <= tomorrow && dayjs(x.endDate) >= tomorrow
-        )
-        .filter((x) => x.weekday === tomorrow.format('dddd'));
-    const thisWeeksClasses = classes?.filter(
-        (x) =>
-            dayjs(x.startDate) <= today.endOf('week') &&
-            dayjs(x.endDate) >= today.startOf('week')
+
+    useEffect(() => {
+        setSelectedClassId(selectedClass?.id ?? undefined);
+    }, [selectedClass]);
+
+    useEffect(() => {
+        if (classes?.length || 0 > 0) {
+            let classList: DanceClassDate[] = [];
+            classes?.forEach((x) => {
+                const classStartDate = dayjs(x.startDate);
+                let curDate = today > classStartDate ? today : classStartDate;
+                while (curDate <= dayjs(x.endDate)) {
+                    if (curDate.day() === days.indexOf(x.weekday)) {
+                        classList.push({
+                            date: curDate,
+                            ...x,
+                        } as DanceClassDate);
+                    }
+                    curDate = curDate.add(1, 'day');
+                }
+            });
+
+            setAllClasses(
+                classList.sort((a, b) =>
+                    a.date === b.date ? 0 : a.date > b.date ? 1 : -1
+                )
+            );
+        }
+    }, [classes]);
+
+    const todaysClasses = allClasses?.filter((x) => x.date === today);
+    const tomorrowsClasses = allClasses?.filter((x) => x.date === tomorrow);
+    const thisWeeksClasses = allClasses?.filter(
+        (x) => x.date <= today.endOf('week') && x.date >= today.startOf('week')
     );
 
     const alwaysShownClassesCount =
@@ -71,19 +90,18 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
         maxClassesToShow - (alwaysShownClassesCount + thisMonthsClassesCount)
     );
 
-    const thisMonthsClasses = classes
+    const thisMonthsClasses = allClasses
         ?.filter(
             (x) =>
-                dayjs(x.startDate) <= today.endOf('month') &&
-                dayjs(x.endDate) >= today.startOf('month')
+                x.date <= today.endOf('month') &&
+                x.date >= today.startOf('month')
         )
         .slice(0, thisMonthsClassesCount);
     // Note: this might have some issues around dec/jan
-    const laterThisYearClasses = classes
+    const laterThisYearClasses = allClasses
         ?.filter(
             (x) =>
-                dayjs(x.startDate) <= today.endOf('year') &&
-                dayjs(x.endDate) <= today.endOf('year')
+                x.date <= today.endOf('year') && x.date <= today.endOf('year')
         )
         .slice(0, laterThisYearClassesCount);
 
@@ -129,7 +147,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                         <ClassTimetableRowHeader>Today</ClassTimetableRowHeader>
                         {todaysClasses?.map((x) => (
                             <ClassTimetableRow
-                                key={x.id}
+                                key={x.id + x.date}
                                 booked={bookings?.some(
                                     (y) => y.classId == x.id
                                 )}
@@ -147,7 +165,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                         </ClassTimetableRowHeader>
                         {tomorrowsClasses?.map((x) => (
                             <ClassTimetableRow
-                                key={x.id}
+                                key={x.id + x.date}
                                 booked={bookings?.some(
                                     (y) => y.classId == x.id
                                 )}
@@ -165,7 +183,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                         </ClassTimetableRowHeader>
                         {thisWeeksClasses?.map((x) => (
                             <ClassTimetableRow
-                                key={x.id}
+                                key={x.id + x.date}
                                 booked={bookings?.some(
                                     (y) => y.classId == x.id
                                 )}
@@ -183,7 +201,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                         </ClassTimetableRowHeader>
                         {thisMonthsClasses?.map((x) => (
                             <ClassTimetableRow
-                                key={x.id}
+                                key={x.id + x.date}
                                 booked={bookings?.some(
                                     (y) => y.classId == x.id
                                 )}
@@ -201,7 +219,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
                         </ClassTimetableRowHeader>
                         {laterThisYearClasses?.map((x) => (
                             <ClassTimetableRow
-                                key={x.id}
+                                key={x.id + x.date}
                                 booked={bookings?.some(
                                     (y) => y.classId == x.id
                                 )}

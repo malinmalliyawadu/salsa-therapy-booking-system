@@ -16,7 +16,6 @@ import { ButtonLink } from './ButtonLink';
 import { Modal } from './Modal';
 import { useBookings } from '../hooks/useBookings';
 import { StripeForm } from './StripeForm';
-import { Loading } from './Loading';
 import { Skeleton } from './Skeleton';
 
 interface ClassDescriptionProps {
@@ -147,7 +146,8 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                 <div className="p-4 bg-gray-50">
                     <div className="flex gap-2 items-center">
                         <CalendarIcon className="h-4 w-4" />
-                        {danceClass.weekday} {danceClass.classStartTime}
+                        {danceClass.date?.format('dddd, D MMMM YYYY')} at{' '}
+                        {danceClass.classStartTime}
                     </div>
                     <div className="flex gap-2 items-center">
                         <LocationMarkerIcon className="h-4 w-4" />

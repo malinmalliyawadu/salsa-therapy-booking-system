@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs';
+
 export interface DanceClass {
     id: string;
     name: string;
@@ -18,4 +20,5 @@ export interface DanceClass {
         | 'Saturday'
         | 'Sunday';
     stripeId: string;
+    date?: Dayjs;
 }
