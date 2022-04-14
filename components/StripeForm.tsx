@@ -1,9 +1,9 @@
 import { getAuth } from 'firebase/auth';
-import { ReactNode } from 'react';
+import { FormEventHandler, ReactNode } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 interface Props {
-    onSubmit: () => void;
+    onSubmit: FormEventHandler<HTMLFormElement>;
     priceId: string;
     children: ReactNode;
 }

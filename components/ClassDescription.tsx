@@ -33,6 +33,8 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
     const isBooked = bookings?.some((y) => y.classId == danceClass.id);
     const [submitLoading, setSubmitLoading] = useState(false);
     const [price, setPrice] = useState<number>();
+    const [dancerType, setDancerType] = useState<string>();
+    const [dancerTypeError, setDancerTypeError] = useState<string>();
 
     const onBookClassClick = () => {
         setShowBookModal(true);
@@ -46,17 +48,31 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
             .then((x) => setPrice(x.unit_amount / 100));
     }, [danceClass.id]);
 
+    const closeModal = () => {
+        setDancerType(undefined);
+        setDancerTypeError(undefined);
+        setShowBookModal(false);
+    };
+
     return (
         <>
             <Modal
                 show={showBookModal}
-                onClose={() => setShowBookModal(false)}
+                onClose={() => closeModal()}
                 title={<>Book {danceClass.name}</>}
                 bodyContent={
                     <StripeForm
                         priceId={danceClass.stripeId ?? ''}
-                        onSubmit={() => {
-                            setSubmitLoading(true);
+                        onSubmit={(e) => {
+                            if (dancerType) {
+                                setSubmitLoading(true);
+                            } else {
+                                e.preventDefault();
+                                setDancerTypeError(
+                                    'Please select a dancer type'
+                                );
+                                return false;
+                            }
                         }}
                     >
                         <p className="text-sm text-gray-500 mb-6">
@@ -82,6 +98,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                         type="radio"
                                         value="Leader"
                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                        onChange={() => setDancerType('leader')}
                                     />
                                     <label
                                         htmlFor="leader"
@@ -97,6 +114,9 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                         type="radio"
                                         value="Follower"
                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                        onChange={() =>
+                                            setDancerType('follower')
+                                        }
                                     />
                                     <label
                                         htmlFor="follower"
@@ -105,6 +125,12 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                         Follower
                                     </label>
                                 </div>
+
+                                {dancerTypeError && (
+                                    <div className="text-red-700 text-sm font-bold">
+                                        {dancerTypeError}
+                                    </div>
+                                )}
                             </div>
                         </fieldset>
 
@@ -120,7 +146,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                             <Button
                                 type="button"
                                 appearance="secondary"
-                                onClick={() => setShowBookModal(false)}
+                                onClick={() => closeModal()}
                                 disabled={submitLoading}
                             >
                                 Cancel
