@@ -90,7 +90,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                     are.
                                 </p>
                             </div>
-                            <div className="mt-4 space-y-4">
+                            <div className="flex flex-col gap-8 mb-6">
                                 <div className="flex items-center hover:bg-gray-200 py-2 px-4 -my-4 -mx-4 rounded-lg">
                                     <input
                                         id="leader"
@@ -123,6 +123,24 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                                         className="ml-3 block text-sm font-medium text-gray-700 w-full"
                                     >
                                         Follower
+                                    </label>
+                                </div>
+                                <div className="flex items-center hover:bg-gray-200 py-2 px-4 -my-4 -mx-4 rounded-lg">
+                                    <input
+                                        id="notsure"
+                                        name="dancerType"
+                                        type="radio"
+                                        value="Not sure"
+                                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                        onChange={() =>
+                                            setDancerType('Not sure')
+                                        }
+                                    />
+                                    <label
+                                        htmlFor="notsure"
+                                        className="ml-3 block text-sm font-medium text-gray-700 w-full"
+                                    >
+                                        I don't know yet
                                     </label>
                                 </div>
 

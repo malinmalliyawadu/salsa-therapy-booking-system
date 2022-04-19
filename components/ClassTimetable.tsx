@@ -81,29 +81,32 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
         (todaysClasses?.length || 0) +
         (tomorrowsClasses?.length || 0) +
         (thisWeeksClasses?.length || 0);
-    const thisMonthsClassesCount = Math.max(
-        0,
-        maxClassesToShow - alwaysShownClassesCount
-    );
-    const laterThisYearClassesCount = Math.max(
-        0,
-        maxClassesToShow - (alwaysShownClassesCount + thisMonthsClassesCount)
-    );
 
-    const thisMonthsClasses = allClasses
-        ?.filter(
+    let thisMonthsClasses =
+        allClasses?.filter(
             (x) =>
                 x.date <= today.endOf('month') &&
                 x.date >= today.startOf('month')
-        )
-        .slice(0, thisMonthsClassesCount);
-    // Note: this might have some issues around dec/jan
-    const laterThisYearClasses = allClasses
-        ?.filter(
+        ) || [];
+    const thisMonthsClassesCount = Math.min(
+        thisMonthsClasses?.length,
+        maxClassesToShow - alwaysShownClassesCount
+    );
+    thisMonthsClasses = thisMonthsClasses.slice(0, thisMonthsClassesCount);
+
+    let laterThisYearClasses =
+        allClasses?.filter(
             (x) =>
                 x.date <= today.endOf('year') && x.date <= today.endOf('year')
-        )
-        .slice(0, laterThisYearClassesCount);
+        ) || [];
+    const laterThisYearClassesCount = Math.min(
+        laterThisYearClasses?.length,
+        maxClassesToShow - (alwaysShownClassesCount + thisMonthsClassesCount)
+    );
+    laterThisYearClasses = laterThisYearClasses.slice(
+        0,
+        laterThisYearClassesCount
+    );
 
     if (loading) {
         return (

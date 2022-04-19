@@ -17,7 +17,7 @@ export const ClassTimetableRow: React.FC<ClassTimetableRowProps> = ({
     return (
         <div
             onClick={() => onClick(danceClass)}
-            className={`p-4 flex border-b hover:bg-yellow-50 cursor-pointer`}
+            className={`p-4 flex border-b border-purple-300 hover:bg-purple-50 cursor-pointer`}
         >
             <div className="w-36 flex flex-col ">
                 <div className="font-bold text-purple-500">
