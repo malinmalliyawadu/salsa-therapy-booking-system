@@ -18,6 +18,7 @@ import {
     FiveTripPass,
     FiveTripPassStudent,
 } from '../constants/stripePriceIds';
+import { MainSiteUrl } from '../constants/urls';
 
 const StripeCallToAction: React.FC<{
     priceId: string;
@@ -73,9 +74,9 @@ const Pricing: NextPage = () => {
                         points={[
                             'One class per week',
                             'Any style and level',
-                            'Includes 2 FREE Salsa Practica passes',
-                            'Contact for student discount!',
-                            'Valid for 10 weeks!',
+                            'Valid for 4 months from purchase date',
+                            'Ten class package',
+                            'Check term dates before purchasing',
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -95,8 +96,9 @@ const Pricing: NextPage = () => {
                         points={[
                             'Two classes per week',
                             'Any classes, style and level',
-                            '1 FREE Salsa Practica passes',
-                            'Valid for 10 weeks!',
+                            'Valid for 4 months from purchase date',
+                            'Ten class package',
+                            'Check term dates before purchasing',
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -111,11 +113,11 @@ const Pricing: NextPage = () => {
                     <PriceCard
                         name={'5 Trip Pass'}
                         noDescription
-
                         priceId={FiveTripPass}
                         points={[
                             'Choose any style and any level',
-                            'Valid for 3 months from date of purchase',
+                            'Valid for 4 months from purchase date',
+                            'Five class package',
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -127,13 +129,14 @@ const Pricing: NextPage = () => {
                         }
                     />
                     <PriceCard
-                        name={'Single class'}
+                        name={'Casual class'}
                         priceId={CasualClass}
                         noDescription
                         points={[
                             '1 casual class',
                             'Any level or style',
                             'Buy and book',
+                            '24 hour cancellation policy for full refund',
                         ]}
                         callToAction={
                             <ButtonLink href="/" className="block">
@@ -141,7 +144,6 @@ const Pricing: NextPage = () => {
                             </ButtonLink>
                         }
                     />
-
                 </div>
 
                 <h2 className="font-bold text-4xl mb-2 tracking-tight">
@@ -152,13 +154,14 @@ const Pricing: NextPage = () => {
                         name={'Dáme Una'}
                         description={'Student Special'}
                         headerBg="bg-green-300"
-
                         priceId={DameUnaStudent}
                         points={[
                             'One class per week',
-                            '1 FREE Salsa Practica passes',
-                            'Valid for 10 weeks!',
-                            'With Student ID',
+                            'Any style and level',
+                            'Valid for 4 months from purchase date',
+                            'Ten class package',
+                            'Check term dates before purchasing',
+                            'With valid Student ID',
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -175,13 +178,13 @@ const Pricing: NextPage = () => {
                         description={'Student Special'}
                         priceId={DameDosStudent}
                         headerBg="bg-blue-300"
-
                         points={[
                             'Two classes per week',
-                            '1 FREE Salsa Practica passes',
-                            'Valid for 10 weeks!',
-                            'With Student ID',
-
+                            'Any classes, style and level',
+                            'Valid for 4 months from purchase date',
+                            'Ten class package',
+                            'Check term dates before purchasing',
+                            'With valid Student ID',
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -193,15 +196,15 @@ const Pricing: NextPage = () => {
                         }
                     />
 
-
                     <PriceCard
                         name={'5 Trip pass'}
                         description={'Student Special'}
                         priceId={FiveTripPassStudent}
                         points={[
                             'Choose any style and any level',
-                            'Valid for 3 months from date of purchase',
-                            'With Student ID'
+                            'Valid for 4 months from purchase date',
+                            'Five class package',
+                            'With valid Student ID',
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -213,13 +216,15 @@ const Pricing: NextPage = () => {
                         }
                     />
                     <PriceCard
-                        name={'Single class'}
+                        name={'Casual class'}
                         description={'Student special'}
                         priceId={CasualClassStudent}
                         points={[
-                            'Choose any style and any level',
-                            'Great Flexibility',
-                            'With Student ID'
+                            '1 casual class',
+                            'Any level or style',
+                            'Buy and book',
+                            '24 hour cancellation policy for full refund',
+                            'With valid Student ID',
                         ]}
                         callToAction={
                             <StripeCallToAction
@@ -230,21 +235,24 @@ const Pricing: NextPage = () => {
                             />
                         }
                     />
-
-
                 </div>
 
-
-                <div className='flex flex-col items-center'>
-                    <h2 className="font-bold text-4xl m-4 tracking-tight">Can't find the term package that you're after?</h2>
-                    <ButtonLink href="mailto:lily@salsatherapy.co.nz" className="block m-4 " >
+                <div className="flex flex-col items-center">
+                    <h2 className="font-bold text-4xl m-4 tracking-tight">
+                        Can't find the term package that you're after?
+                    </h2>
+                    <ButtonLink
+                        href={`${MainSiteUrl}contact`}
+                        className="block m-4 "
+                    >
                         Contact us for more package deals
                     </ButtonLink>
                 </div>
 
-
                 <div className="my-10 mx-6">
-                    <h2 className="font-bold mb-4 text-xl">Terms</h2>
+                    <h2 className="font-bold mb-4 text-xl">
+                        Terms and conditions
+                    </h2>
                     <ul className="list-disc ml-6">
                         <li>
                             We do not offer refunds or partial refunds for
