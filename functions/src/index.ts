@@ -35,6 +35,7 @@ app.post('/create-checkout-session', async (req, res) => {
         mode: 'payment',
         success_url: `${YOUR_DOMAIN}/booking/success/?id=${req.body.priceId}&dancerType=${req.body.dancerType}`,
         cancel_url: req.headers.referer || `${YOUR_DOMAIN}`,
+        allow_promotion_codes: true,
     });
 
     res.redirect(303, session.url || '/');
