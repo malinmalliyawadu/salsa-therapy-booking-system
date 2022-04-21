@@ -5,6 +5,7 @@ import { HeaderNavLink } from './HeaderNavLink';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useAdmins } from '../hooks/useAdmins';
+import { MainSiteUrl } from '../constants/urls';
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
@@ -17,13 +18,11 @@ export const Header = () => {
 
     return (
         <header className="z-10 shadow-sm sticky py-6 px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
-            <a href="/" className="transition-all transform hover:scale-125">
-                <img
-                    src="/logo.png"
-                    width="60"
-                    height="60"
-                    className="rounded-full"
-                />
+            <a
+                href={MainSiteUrl}
+                className="text-black text-4xl font-medium hover:no-underline"
+            >
+                Salsa Therapy
             </a>
 
             <nav className="flex gap-6 items-center">

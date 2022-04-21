@@ -12,6 +12,7 @@ module.exports = {
             indigo: colors.indigo,
             red: colors.rose,
             yellow: colors.amber,
+            pink: colors.pink,
 
             purple: {
                 50: '#f2fbf8',

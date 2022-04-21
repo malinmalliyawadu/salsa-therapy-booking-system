@@ -24,70 +24,80 @@ const Bookings: NextPage = () => {
     const [bookings, bookingsLoading, bookingsError] = useBookings();
     const [classes, classesLoading] = useClasses();
 
-    console.log(classes);
-
     return (
         <div className="m-6">
             <h1 className="font-bold text-black text-7xl mb-8 tracking-tighter text-center">
                 Your Bookings
             </h1>
 
-            <div className="flex flex-col">
-                <div className="overflow-x-auto shadow-xl sm:rounded-xl">
-                    <div className="inline-block min-w-full align-middle">
-                        <div className="overflow-hidden ">
-                            <table className="min-w-full divide-y divide-gray-200 table-fixed">
-                                <thead className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-800">
-                                    <tr>
-                                        <TH>Name</TH>
-                                        <TH>Description</TH>
-                                        <TH>Duration</TH>
-                                        <TH>Weekday</TH>
-                                        <TH>Start Date</TH>
-                                        <TH>End Date</TH>
-                                    </tr>
-                                </thead>
+            {(bookings?.length || 0) > 0 && (
+                <div className="flex flex-col">
+                    <div className="overflow-x-auto shadow-xl sm:rounded-xl">
+                        <div className="inline-block min-w-full align-middle">
+                            <div className="overflow-hidden ">
+                                <table className="min-w-full divide-y divide-gray-200 table-fixed">
+                                    <thead className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-800">
+                                        <tr>
+                                            <TH>Name</TH>
+                                            <TH>Description</TH>
+                                            <TH>Duration</TH>
+                                            <TH>Weekday</TH>
+                                            <TH>Start Date</TH>
+                                            <TH>End Date</TH>
+                                        </tr>
+                                    </thead>
 
-                                <tbody className="bg-white divide-y divide-gray-200">
-                                    {bookings?.map((x) => {
-                                        const matchedClass = classes?.find(
-                                            (y) => y.id == x.classId
-                                        );
+                                    <tbody className="bg-white divide-y divide-gray-200">
+                                        {bookings?.map((x) => {
+                                            const matchedClass = classes?.find(
+                                                (y) => y.id == x.classId
+                                            );
 
-                                        return (
-                                            <tr>
-                                                <TD>{matchedClass?.name}</TD>
-                                                <TD>
-                                                    {matchedClass?.description}
-                                                </TD>
-                                                <TD>
-                                                    {matchedClass?.duration}
-                                                </TD>
-                                                <TD>{matchedClass?.weekday}</TD>
-                                                <TD>
-                                                    {dayjs(
-                                                        matchedClass?.startDate
-                                                    ).format('D MMMM YYYY')}
-                                                </TD>
-                                                <TD>
-                                                    {dayjs(
-                                                        matchedClass?.endDate
-                                                    ).format('D MMMM YYYY')}
-                                                </TD>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
+                                            return (
+                                                <tr>
+                                                    <TD>
+                                                        {matchedClass?.name}
+                                                    </TD>
+                                                    <TD>
+                                                        {
+                                                            matchedClass?.description
+                                                        }
+                                                    </TD>
+                                                    <TD>
+                                                        {matchedClass?.duration}
+                                                    </TD>
+                                                    <TD>
+                                                        {matchedClass?.weekday}
+                                                    </TD>
+                                                    <TD>
+                                                        {dayjs(
+                                                            matchedClass?.startDate
+                                                        ).format('D MMMM YYYY')}
+                                                    </TD>
+                                                    <TD>
+                                                        {dayjs(
+                                                            matchedClass?.endDate
+                                                        ).format('D MMMM YYYY')}
+                                                    </TD>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
 
             {(bookingsLoading || classesLoading) && (
                 <div className="flex flex-col justify-center w-full max-w-md p-16 m-auto">
                     <Loading />
                 </div>
+            )}
+
+            {bookings?.length === 0 && (
+                <div className="text-xl text-center">Nothing yet ☹️</div>
             )}
         </div>
     );
