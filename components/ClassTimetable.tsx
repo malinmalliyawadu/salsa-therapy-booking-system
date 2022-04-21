@@ -8,6 +8,7 @@ import { Button } from './Button';
 import { ClassTimetableRow } from './ClassTimetableRow';
 import { ClassTimetableRowHeader } from './ClassTimetableRowHeader';
 import { Loading } from './Loading';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 interface ClassTimetableProps {
     onRowClick: (danceClass: DanceClass) => void;
@@ -22,6 +23,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     onRowClick,
     selectedClass,
 }) => {
+    dayjs.extend(customParseFormat);
     const today = dayjs();
     const tomorrow = dayjs().add(1, 'day');
     const defaultMaxClassesToShow = 10;
@@ -64,9 +66,20 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
             });
 
             setAllClasses(
-                classList.sort((a, b) =>
-                    a.date === b.date ? 0 : a.date > b.date ? 1 : -1
-                )
+                classList.sort((a, b) => {
+                    const format = 'YYYY-MM-DD h.mma';
+                    const classA = dayjs(
+                        `${a.date.format('YYYY-MM-DD')} ${a.classStartTime}`,
+                        format
+                    );
+                    const classB = dayjs(
+                        `${b.date.format('YYYY-MM-DD')} ${b.classStartTime}`,
+                        format
+                    );
+                    const minsDiff = classB.diff(classA, 'minutes', true);
+
+                    return -minsDiff;
+                })
             );
         }
     }, [classes]);
@@ -97,7 +110,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
     let laterThisYearClasses =
         allClasses?.filter(
             (x) =>
-                x.date <= today.endOf('year') && x.date <= today.endOf('year')
+                x.date <= today.endOf('year') && x.date >= today.endOf('month')
         ) || [];
     const laterThisYearClassesCount = Math.min(
         laterThisYearClasses?.length,
