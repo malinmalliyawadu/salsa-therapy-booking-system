@@ -16,13 +16,11 @@ export const ClassDescriptionHelp = () => {
                 Welcome to the Salsa Therapy booking system.
             </p>
 
-            <div className="mt-5 bg-purple-200 rounded-lg p-4 flex flex-col gap-5">
+            <div className="mt-5 rounded-lg flex flex-col bg-purple-200 p-4">
                 <div className="flex items-center gap-3">
                     <span className="text-3xl">👈</span>
                     <p>Click on one of our upcoming classes to get started</p>
                 </div>
-            </div>
-            <div className="mt-5 bg-purple-200 rounded-lg p-4 flex flex-col gap-5">
                 <div className="flex items-center gap-3">
                     <span className="text-3xl">👇</span>
                     <p>Or, keep scrolling to find the one you're after</p>

@@ -18,7 +18,7 @@ export const HeaderNavLink: React.FC<HeaderNavLinkProps> = ({
                 isSelected
                     ? 'border-b-4 text-purple-500 border-purple-500'
                     : 'hover:text-purple-500'
-            } pb-1 hover:no-underline text-gray-700`}
+            } pb-1 hover:no-underline text-gray-700 hidden md:block`}
         >
             {children}
         </a>
