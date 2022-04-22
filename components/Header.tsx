@@ -18,7 +18,7 @@ export const Header = () => {
 
     return (
         <>
-            <header className="z-10 shadow-sm sticky py-6 px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
+            <header className="z-10 shadow-sm sticky py-6 px-4 md:px-8 flex justify-between items-center top-0 left-0 right-0 bg-white border-b border-gray-200">
                 <a
                     href={MainSiteUrl}
                     className="text-black text-4xl font-medium hover:no-underline"
@@ -115,7 +115,7 @@ export const Header = () => {
                     </>
                 </nav>
             </header>
-            <div className="py-4 bg-purple-200 text-center text-black">
+            <div className="py-4 bg-purple-200 text-center text-black text-sm md:text-md">
                 Need help or having issues?{' '}
                 <a
                     className="text-purple-600"

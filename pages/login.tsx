@@ -21,7 +21,7 @@ const Login: NextPage = () => {
     };
 
     return (
-        <div className="m-32 p-10 flex justify-center flex-col">
+        <div className="md:m-32 p-10 flex justify-center flex-col">
             <style>
                 {`
                   .firebaseui-idp-button {

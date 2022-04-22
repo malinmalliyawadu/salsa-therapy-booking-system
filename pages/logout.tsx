@@ -9,7 +9,9 @@ const Logout: NextPage = () => {
     return (
         <div className="flex justify-center my-32 flex-col items-center">
             <CheckCircleIcon className="h-20 w-20 mb-5 text-green-600" />
-            <h1 className="text-4xl">You have successfully logged out.</h1>
+            <h1 className="text-4xl text-center px-8">
+                You have successfully logged out.
+            </h1>
         </div>
     );
 };

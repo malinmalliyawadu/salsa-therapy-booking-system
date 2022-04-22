@@ -73,7 +73,7 @@ export const Modal: React.FC<Props> = ({
                         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div className="sm:flex sm:items-start">
-                                    <div className="mt-3 w-full text-center sm:mt-0 sm:mx-4 sm:text-left">
+                                    <div className="mt-0 w-full md:mt-3 sm:mx-4 sm:text-left">
                                         <Dialog.Title
                                             as="h3"
                                             className="text-3xl mb-5 font-medium text-gray-900"
@@ -87,7 +87,7 @@ export const Modal: React.FC<Props> = ({
                                 </div>
                             </div>
                             {footerContent && (
-                                <div className="bg-gray-50 px-4 py-6 sm:px-10 sm:flex sm:flex-row-reverse gap-3">
+                                <div className="bg-gray-50 px-4 py-6 md:px-10 flex flex-row-reverse gap-3">
                                     {footerContent}
                                 </div>
                             )}

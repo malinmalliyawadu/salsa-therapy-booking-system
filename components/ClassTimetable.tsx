@@ -134,7 +134,7 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
             <h2 className="font-bold text-4xl mt-4 tracking-tight text-purple-700">
                 Class Timetable
             </h2>
-            <div className="border border-purple-300 w-full filter drop-shadow-lg shadow-lg bg-white flex-1 rounded-md self-start overflow-hidden">
+            <div className="border border-purple-700 w-full filter drop-shadow-lg shadow-lg bg-white flex-1 rounded-md self-start overflow-hidden">
                 {!todaysClasses?.length &&
                     !tomorrowsClasses?.length &&
                     !thisMonthsClasses?.length && (

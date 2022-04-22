@@ -152,7 +152,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                             </div>
                         </fieldset>
 
-                        <div className="bg-gray-50 px-4 py-6 -mx-10 -mb-4 sm:px-10 sm:flex sm:flex-row-reverse gap-3">
+                        <div className="bg-gray-50 py-6 -mx-10 -mb-4 px-10 flex flex-row-reverse gap-3">
                             <Button
                                 type="submit"
                                 disabled={submitLoading}
@@ -178,12 +178,12 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                 initial={{ opacity: 0, scale: 0.2 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.2 }}
-                className="shadow-xl overflow-hidden border border-gray-300 bg-white flex-1 rounded-md self-start"
+                className="shadow-xl overflow-hidden md:border border-gray-300 bg-white flex-1 md:rounded-md self-start relative min-h-full md:min-h-0"
             >
                 <h2 className="flex justify-between p-4 font-bold bg-gradient-to-r from-purple-600 to-purple-500 text-white border-b text-2xl">
                     {danceClass.name}
                     <button className="" onClick={onClose}>
-                        <XCircleIcon className="h-9 w-9 hover:text-gray-400" />
+                        <XCircleIcon className="h-9 w-9 hover:text-purple-700" />
                     </button>
                 </h2>
 
@@ -201,7 +201,10 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                             rel="noopener noreferrer"
                             className="hover:underline hover:text-purple-500 flex items-center"
                         >
-                            Full Swing, 80 Cuba Street, Te Aro, Wellington 6011
+                            Full Swing
+                            <span className="hidden md:inline">
+                                , 80 Cuba Street, Te Aro, Wellington 6011
+                            </span>
                             <ExternalLinkIcon className="h-4 w-4 inline-block ml-1" />
                         </a>
                     </div>
@@ -210,16 +213,16 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
                         Duration: {danceClass.duration} mins
                     </div>
                 </div>
-                <div className="p-4 ">
+                <div className="p-4">
                     <h3 className="text-lg font-bold">Description</h3>
                     <p>{danceClass.description}</p>
                 </div>
 
-                <div className="p-4 bg-gray-50">
+                <div className="p-3 md:p-4 bg-gray-50 absolute md:static bottom-0 left-0 right-0">
                     <h3 className="text-lg font-bold">Price</h3>
                     <div className="flex justify-between items-end">
                         <div className="text-5xl">
-                            {price ? <>${price}</> : <Skeleton />}
+                            {price ? <>${price}</> : <Skeleton width={16} />}
                         </div>
                         {isBooked ? (
                             <div className="text-green-600 bg-green-50 py-2 px-4 rounded-3xl text-xl border border-green-300">
