@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { ref, getDatabase, set } from 'firebase/database';
 import { useState } from 'react';
+import { fullDateFormat } from '../constants/datetime';
 import { useClasses } from '../hooks/useClasses';
 import { Button } from './Button';
 import { FormElement } from './FormElement';
@@ -33,8 +34,37 @@ export const AddClassModal: React.FC<Props> = ({
 }) => {
     const [formData, setFormData] = useState<FormData>(initialState);
     const [classes] = useClasses();
+    const [classStartTimeError, setClassStartTimeError] = useState<string>();
+
+    const onClose = () => {
+        setClassStartTimeError(undefined);
+        setShowAddClassModal(false);
+    };
+
+    const validateClassStartTime = () => {
+        debugger;
+        const date = dayjs(
+            `${dayjs(formData.startDate).format('YYYY-MM-DD')} ${
+                formData.classStartTime
+            }`,
+            fullDateFormat
+        );
+        if (!date.isValid()) {
+            return 'Please enter a class start time in the correct format, ie. 7.20pm, 8.00pm';
+        }
+
+        return undefined;
+    };
 
     const onSave = () => {
+        const errors = validateClassStartTime();
+        if (errors) {
+            setClassStartTimeError(errors);
+            return;
+        }
+
+        setClassStartTimeError(undefined);
+
         // max class id used in add class mode
         const maxClassId = Math.max(
             ...(classes?.map((x) => Number(x.id)) || [0])
@@ -47,13 +77,13 @@ export const AddClassModal: React.FC<Props> = ({
             endDate: dayjs(formData.endDate).format('YYYY-MM-DD'),
         });
 
-        setShowAddClassModal(false);
+        onClose();
     };
 
     return (
         <Modal
             show={showAddClassModal}
-            onClose={() => setShowAddClassModal(false)}
+            onClose={onClose}
             title={`${classId ? 'Edit' : 'Add'} class`}
             bodyContent={
                 <div>
@@ -99,6 +129,8 @@ export const AddClassModal: React.FC<Props> = ({
                             setFormData({ ...formData, classStartTime: val })
                         }
                         value={formData.classStartTime}
+                        placeholder="7.20pm"
+                        error={classStartTimeError !== undefined}
                     />
                     <FormElement
                         name="startDate"
@@ -138,6 +170,12 @@ export const AddClassModal: React.FC<Props> = ({
                         }
                         value={formData.stripeId}
                     />
+
+                    {classStartTimeError && (
+                        <div className="text-red-600">
+                            {classStartTimeError}
+                        </div>
+                    )}
                 </div>
             }
             footerContent={
@@ -145,10 +183,7 @@ export const AddClassModal: React.FC<Props> = ({
                     <Button onClick={onSave}>{`${
                         classId ? 'Update' : 'Add'
                     }`}</Button>
-                    <Button
-                        appearance="secondary"
-                        onClick={() => setShowAddClassModal(false)}
-                    >
+                    <Button appearance="secondary" onClick={onClose}>
                         Cancel
                     </Button>
                 </>

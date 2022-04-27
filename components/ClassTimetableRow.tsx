@@ -1,7 +1,4 @@
-import dayjs, { Dayjs } from 'dayjs';
-import { Booking } from '../types/Booking';
 import { DanceClass } from '../types/DanceClass';
-import weekday from 'dayjs/plugin/weekday';
 
 interface ClassTimetableRowProps {
     danceClass: DanceClass;

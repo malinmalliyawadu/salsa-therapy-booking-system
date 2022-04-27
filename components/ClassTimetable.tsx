@@ -9,6 +9,7 @@ import { ClassTimetableRow } from './ClassTimetableRow';
 import { ClassTimetableRowHeader } from './ClassTimetableRowHeader';
 import { Loading } from './Loading';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { fullDateFormat } from '../constants/datetime';
 
 interface ClassTimetableProps {
     onRowClick: (danceClass: DanceClass) => void;
@@ -67,14 +68,13 @@ export const ClassTimetable: React.FC<ClassTimetableProps> = ({
 
             setAllClasses(
                 classList.sort((a, b) => {
-                    const format = 'YYYY-MM-DD h.mma';
                     const classA = dayjs(
                         `${a.date.format('YYYY-MM-DD')} ${a.classStartTime}`,
-                        format
+                        fullDateFormat
                     );
                     const classB = dayjs(
                         `${b.date.format('YYYY-MM-DD')} ${b.classStartTime}`,
-                        format
+                        fullDateFormat
                     );
                     const minsDiff = classB.diff(classA, 'minutes', true);
 
