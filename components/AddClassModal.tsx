@@ -42,13 +42,11 @@ export const AddClassModal: React.FC<Props> = ({
     };
 
     const validateClassStartTime = () => {
-        debugger;
         const date = dayjs(
-            `${dayjs(formData.startDate).format('YYYY-MM-DD')} ${
-                formData.classStartTime
-            }`,
+            `2000-01-01 ${formData.classStartTime}`,
             fullDateFormat
         );
+
         if (!date.isValid()) {
             return 'Please enter a class start time in the correct format, ie. 7.20pm, 8.00pm';
         }
