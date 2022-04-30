@@ -1,4 +1,5 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { ref, getDatabase, set } from 'firebase/database';
 import { useState } from 'react';
 import { fullDateFormat } from '../constants/datetime';
@@ -32,6 +33,7 @@ export const AddClassModal: React.FC<Props> = ({
     classId,
     initialState = {},
 }) => {
+    dayjs.extend(customParseFormat);
     const [formData, setFormData] = useState<FormData>(initialState);
     const [classes] = useClasses();
     const [classStartTimeError, setClassStartTimeError] = useState<string>();
@@ -42,10 +44,7 @@ export const AddClassModal: React.FC<Props> = ({
     };
 
     const validateClassStartTime = () => {
-        const date = dayjs(
-            `2000-01-01 ${formData.classStartTime}`,
-            fullDateFormat
-        );
+        const date = dayjs(`${formData.classStartTime}`, 'h.mma', true);
 
         if (!date.isValid()) {
             return 'Please enter a class start time in the correct format, ie. 7.20pm, 8.00pm';
