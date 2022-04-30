@@ -37,26 +37,43 @@ export const AddClassModal: React.FC<Props> = ({
     const [formData, setFormData] = useState<FormData>(initialState);
     const [classes] = useClasses();
     const [classStartTimeError, setClassStartTimeError] = useState<string>();
+    const [stripeIdError, setStripeIdError] = useState<string>();
+    const [saving, setSaving] = useState<boolean>();
 
     const onClose = () => {
         setClassStartTimeError(undefined);
+        setStripeIdError(undefined);
         setShowAddClassModal(false);
+        setSaving(false);
     };
 
-    const validateClassStartTime = () => {
+    const validate = async () => {
         const date = dayjs(`${formData.classStartTime}`, 'h.mma', true);
+        const price = await fetch(
+            `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${formData.stripeId}`
+        )
+            .then((res) => res.json())
+            .then((x) => x?.unit_amount)
+            .catch((x) => undefined);
 
         if (!date.isValid()) {
-            return 'Please enter a class start time in the correct format, ie. 7.20pm, 8.00pm';
+            setClassStartTimeError(
+                'Please enter a class start time in the correct format, ie. 7.20pm, 8.00pm'
+            );
+        } else if (!price) {
+            setStripeIdError('Could not find a price with this id');
+        } else {
+            return false;
         }
 
-        return undefined;
+        return true;
     };
 
-    const onSave = () => {
-        const errors = validateClassStartTime();
+    const onSave = async () => {
+        setSaving(true);
+        const errors = await validate();
         if (errors) {
-            setClassStartTimeError(errors);
+            setSaving(false);
             return;
         }
 
@@ -127,7 +144,7 @@ export const AddClassModal: React.FC<Props> = ({
                         }
                         value={formData.classStartTime}
                         placeholder="7.20pm"
-                        error={classStartTimeError !== undefined}
+                        error={classStartTimeError}
                     />
                     <FormElement
                         name="startDate"
@@ -166,21 +183,20 @@ export const AddClassModal: React.FC<Props> = ({
                             setFormData({ ...formData, stripeId: val })
                         }
                         value={formData.stripeId}
+                        error={stripeIdError}
                     />
-
-                    {classStartTimeError && (
-                        <div className="text-red-600">
-                            {classStartTimeError}
-                        </div>
-                    )}
                 </div>
             }
             footerContent={
                 <>
-                    <Button onClick={onSave}>{`${
-                        classId ? 'Update' : 'Add'
+                    <Button disabled={saving} onClick={onSave}>{`${
+                        saving ? 'Please wait...' : classId ? 'Update' : 'Add'
                     }`}</Button>
-                    <Button appearance="secondary" onClick={onClose}>
+                    <Button
+                        disabled={saving}
+                        appearance="secondary"
+                        onClick={onClose}
+                    >
                         Cancel
                     </Button>
                 </>

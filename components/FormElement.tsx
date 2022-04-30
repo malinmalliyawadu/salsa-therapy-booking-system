@@ -5,7 +5,7 @@ interface Props {
     setValue: (val: string) => void;
     value?: string;
     placeholder?: string;
-    error?: boolean;
+    error?: boolean | string;
 }
 
 const weekdays = [
@@ -41,7 +41,7 @@ export const FormElement: React.FC<Props> = ({
                     id={name}
                     className={`bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
                         error
-                            ? 'border-red-900 border-2'
+                            ? 'border-red-600 border-2'
                             : 'border-gray-300 border'
                     }`}
                     required
@@ -85,6 +85,8 @@ export const FormElement: React.FC<Props> = ({
                     onChange={(e) => setValue(e.currentTarget.value)}
                 />
             )}
+
+            {error && <div className="text-red-600 text-sm pt-1">{error}</div>}
         </div>
     );
 };
