@@ -54,7 +54,7 @@ const Bookings: NextPage = () => {
                                             );
 
                                             return (
-                                                <tr>
+                                                <tr key={matchedClass?.id}>
                                                     <TD>
                                                         {matchedClass?.name}
                                                     </TD>

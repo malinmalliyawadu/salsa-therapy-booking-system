@@ -69,7 +69,9 @@ export const FormElement: React.FC<Props> = ({
                         value={value}
                     >
                         {weekdays.map((x) => (
-                            <option value={x}>{x}</option>
+                            <option key={x} value={x}>
+                                {x}
+                            </option>
                         ))}
                     </select>
                 </>

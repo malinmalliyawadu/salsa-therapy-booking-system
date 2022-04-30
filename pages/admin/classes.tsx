@@ -105,7 +105,10 @@ const Classes: NextPage = () => {
                                 {isAdmin && (classes?.length || 0) > 0 && (
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {classes?.map((x) => (
-                                            <tr className="hover:bg-gray-100">
+                                            <tr
+                                                key={x.id}
+                                                className="hover:bg-gray-100"
+                                            >
                                                 <TD>{x.name}</TD>
                                                 <TD>{x.description}</TD>
                                                 <TD>{x.duration}</TD>
