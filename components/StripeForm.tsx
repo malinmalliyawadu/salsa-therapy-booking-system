@@ -1,6 +1,7 @@
 import { getAuth } from 'firebase/auth';
 import { FormEventHandler, ReactNode } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { ApiUrl } from '../constants/urls';
 
 interface Props {
     onSubmit: FormEventHandler<HTMLFormElement>;
@@ -17,7 +18,7 @@ export const StripeForm: React.FC<Props> = ({
     return (
         <form
             method="POST"
-            action="https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/create-checkout-session"
+            action={`${ApiUrl}create-checkout-session`}
             onSubmit={onSubmit}
         >
             <input name="priceId" type="hidden" value={priceId} />

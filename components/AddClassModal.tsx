@@ -3,6 +3,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { ref, getDatabase, set } from 'firebase/database';
 import { useState } from 'react';
 import { fullDateFormat } from '../constants/datetime';
+import { ApiUrl } from '../constants/urls';
 import { useClasses } from '../hooks/useClasses';
 import { Button } from './Button';
 import { FormElement } from './FormElement';
@@ -49,9 +50,7 @@ export const AddClassModal: React.FC<Props> = ({
 
     const validate = async () => {
         const date = dayjs(`${formData.classStartTime}`, 'h.mma', true);
-        const price = await fetch(
-            `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${formData.stripeId}`
-        )
+        const price = await fetch(`${ApiUrl}price/${formData.stripeId}`)
             .then((res) => res.json())
             .then((x) => x?.unit_amount)
             .catch((x) => undefined);

@@ -17,6 +17,7 @@ import { Modal } from './Modal';
 import { useBookings } from '../hooks/useBookings';
 import { StripeForm } from './StripeForm';
 import { Skeleton } from './Skeleton';
+import { ApiUrl } from '../constants/urls';
 
 interface ClassDescriptionProps {
     danceClass: DanceClass;
@@ -41,9 +42,7 @@ export const ClassDescription: React.FC<ClassDescriptionProps> = ({
     };
 
     useEffect(() => {
-        fetch(
-            `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${danceClass.stripeId}`
-        )
+        fetch(`${ApiUrl}price/${danceClass.stripeId}`)
             .then((res) => res.json())
             .then((x) => setPrice(x.unit_amount / 100));
     }, [danceClass.id]);

@@ -3,6 +3,7 @@ import { CheckIcon } from '@heroicons/react/outline';
 import { ReactNode } from 'react';
 import { Button } from './Button';
 import { Skeleton } from './Skeleton';
+import { ApiUrl } from '../constants/urls';
 
 interface Props {
     name: string;
@@ -45,9 +46,7 @@ export const PriceCard: React.FC<Props> = ({
     const [price, setPrice] = useState<number>();
 
     useEffect(() => {
-        fetch(
-            `https://us-central1-salsa-therapy-booking-system.cloudfunctions.net/app/price/${priceId}`
-        )
+        fetch(`${ApiUrl}price/${priceId}`)
             .then((res) => res.json())
             .then((x) => setPrice(x.unit_amount / 100));
     }, [priceId]);
